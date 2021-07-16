@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'edu.pucmm.eict'
+version '1.0-SNAPSHOT'
+
+mainClassName='edu.pucmm.eict.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+
+    //Thymeleaf
+    implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
+
+    //Dependencia de Javalin
+    compile 'io.javalin:javalin:3.8.0'
+
+    //Manejo de log.
+    compile "org.slf4j:slf4j-simple:1.7.28"
+    implementation 'com.h2database:h2:1.4.200'
+
+    //JPA HIBERNATE
+    implementation 'org.hibernate:hibernate-core:5.4.17.Final'
+    implementation 'org.hibernate:hibernate-entitymanager:5.4.17.Final'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
