@@ -11,31 +11,35 @@ public class UserWheelchair implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String username;
+    private int id;
+
+    @OneToOne
+    private Username username;
     private String name;
     private String lastname;
     private String password;
     private String email;
     private String phoneNumber;
 
-    public UserWheelchair (String username, String name, String lastname, String password, String email, String phoneNumber) {
-        this.username = username;
-        this.name = name;
-        this.lastname = lastname;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
+
 
     public UserWheelchair() {
 
     }
 
-    public String getUsername() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Username getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Username username) {
         this.username = username;
     }
 
@@ -78,4 +82,5 @@ public class UserWheelchair implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

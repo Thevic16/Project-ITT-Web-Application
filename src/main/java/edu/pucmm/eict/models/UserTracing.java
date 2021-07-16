@@ -10,7 +10,10 @@ public class UserTracing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String username;
+    private int id;
+
+    @OneToOne
+    private Username username;
     private String name;
     private String lastname;
     private String password;
@@ -20,25 +23,25 @@ public class UserTracing {
     @OneToMany
     private List<UserWheelchair> usersWheelchair;
 
-    public UserTracing(String username, String name, String lastname, String password, String email, String phoneNumber, List<UserWheelchair> usersWheelchair) {
-        this.username = username;
-        this.name = name;
-        this.lastname = lastname;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.usersWheelchair = usersWheelchair;
-    }
+
 
     public UserTracing() {
 
     }
 
-    public String getUsername() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Username getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Username username) {
         this.username = username;
     }
 
@@ -89,5 +92,4 @@ public class UserTracing {
     public void setUsersWheelchair(List<UserWheelchair> usersWheelchair) {
         this.usersWheelchair = usersWheelchair;
     }
-
 }

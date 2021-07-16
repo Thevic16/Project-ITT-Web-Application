@@ -1,6 +1,7 @@
 package edu.pucmm.eict;
 
 
+import edu.pucmm.eict.controllers.MainController;
 import edu.pucmm.eict.services.DatabaseSetupServices;
 import io.javalin.Javalin;
 import io.javalin.plugin.rendering.JavalinRenderer;
@@ -27,9 +28,6 @@ public class Main {
         //Registrando manejador de plantillas THymeleaf.
         JavalinRenderer.register(JavalinThymeleaf.INSTANCE, ".html");
 
-
-        app.get("/", ctx -> {
-            ctx.render("/public/templates/1-outside-index.html");
-        });
+        new MainController(app).applyRoutes();
     }
 }
