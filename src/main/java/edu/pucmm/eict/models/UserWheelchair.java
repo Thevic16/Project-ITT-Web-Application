@@ -17,7 +17,6 @@ public class UserWheelchair implements Serializable {
     private Username username;
     private String name;
     private String lastname;
-    private String password;
     private String email;
     private String phoneNumber;
 
@@ -57,14 +56,6 @@ public class UserWheelchair implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {

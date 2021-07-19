@@ -14,13 +14,27 @@ public class Username {
 
 
     private String username;
+    private String password;
+    private Boolean iswheelchair;
 
-    public Username(String username) {
-        this.username = username;
-    }
 
     public Username() {
 
+    }
+
+    public Username(int id, String username, String password, Boolean iswheelchair) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.iswheelchair = iswheelchair;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -29,5 +43,21 @@ public class Username {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getIswheelchair() {
+        return iswheelchair;
+    }
+
+    public void setIswheelchair(Boolean iswheelchair) {
+        this.iswheelchair = iswheelchair;
     }
 }

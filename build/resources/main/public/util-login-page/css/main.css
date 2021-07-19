@@ -55,7 +55,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #1b3815;
+  color: #e03a3c;
 }
 
 /*---------------------------------------------*/
@@ -104,15 +104,15 @@ textarea:focus, input:focus {
 }
 
 
-input::-webkit-input-placeholder { color: #1b3815;}
-input:-moz-placeholder { color: #1b3815;}
-input::-moz-placeholder { color: #1b3815;}
-input:-ms-input-placeholder { color: #1b3815;}
+input::-webkit-input-placeholder { color: #e03a3c;}
+input:-moz-placeholder { color: #e03a3c;}
+input::-moz-placeholder { color: #e03a3c;}
+input:-ms-input-placeholder { color: #e03a3c;}
 
-textarea::-webkit-input-placeholder { color: #1b3815;}
-textarea:-moz-placeholder { color: #1b3815;}
-textarea::-moz-placeholder { color: #1b3815;}
-textarea:-ms-input-placeholder { color: #1b3815;}
+textarea::-webkit-input-placeholder { color: #e03a3c;}
+textarea:-moz-placeholder { color: #e03a3c;}
+textarea::-moz-placeholder { color: #e03a3c;}
+textarea:-ms-input-placeholder { color: #e03a3c;}
 
 /*---------------------------------------------*/
 button {
@@ -230,7 +230,7 @@ iframe {
 .input100 {
   font-family: Ubuntu-Bold;
   font-size: 15px;
-  color: #e03a3c;
+  color: black;
   line-height: 1.2;
 
   position: relative;
@@ -393,4 +393,9 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.link-container {
+  text-align: center;
+  color: #fff;
 }
