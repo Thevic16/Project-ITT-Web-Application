@@ -26,6 +26,14 @@ public class UserWheelchair implements Serializable {
 
     }
 
+    public UserWheelchair(Username username, String name, String lastname, String email, String phoneNumber) {
+        this.username = username;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getId() {
         return id;
     }

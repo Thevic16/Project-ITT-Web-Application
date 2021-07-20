@@ -1,6 +1,8 @@
 package edu.pucmm.eict.controllers;
 
+import edu.pucmm.eict.models.UserWheelchair;
 import edu.pucmm.eict.models.Username;
+import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import io.javalin.Javalin;
@@ -112,13 +114,36 @@ public class MainController extends BaseController {
                     ctx.render("/public/templates/7-in-admin-list.html");
                 });
 
+
                 get("/admin-regist-wheel", ctx -> {
                     ctx.render("/public/templates/8-in-admin-regist-wheel.html");
+                });
+
+                post("/admin-regist-wheel", ctx -> {
+                    String name = ctx.formParam("name");
+                    String lastname = ctx.formParam("lastname");
+                    String username = ctx.formParam("username");
+                    String password = ctx.formParam("password");
+                    String email = ctx.formParam("email");
+                    String phone = ctx.formParam("phone");
+
+                    Username usernameObject = new Username(username,password,true);
+                    UsernameServices.getInstance().create(usernameObject);
+
+                    UserWheelchair userWheelchair = new UserWheelchair(usernameObject,name,lastname,email,phone);
+                    UserWheelchairServices.getInstance().create(userWheelchair);
+
+                    ctx.redirect("/admin-regist-wheel");
                 });
 
                 get("/admin-regist-tracing", ctx -> {
                     ctx.render("/public/templates/9-in-admin-regist-tracing.html");
                 });
+
+                post("/admin-regist-tracing", ctx -> {
+
+                });
+
 
                 get("/wheel-reminder-create", ctx -> {
                     ctx.render("/public/templates/3-in-wheel-reminder-create.html");
@@ -137,6 +162,7 @@ public class MainController extends BaseController {
                     ctx.sessionAttribute("logged", null);
                     ctx.redirect("/");
                 });
+
 
             });
         });

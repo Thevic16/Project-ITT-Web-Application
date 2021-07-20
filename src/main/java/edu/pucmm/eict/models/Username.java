@@ -22,8 +22,7 @@ public class Username {
 
     }
 
-    public Username(int id, String username, String password, Boolean iswheelchair) {
-        this.id = id;
+    public Username(String username, String password, Boolean iswheelchair) {
         this.username = username;
         this.password = password;
         this.iswheelchair = iswheelchair;

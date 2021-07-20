@@ -59,7 +59,7 @@
             </ul>
           </nav><!-- .nav-menu -->
 
-          <a href="#about" class="get-started-btn scrollto">Cerrar sesión</a>
+          <a href="/in/logout" class="get-started-btn scrollto">Cerrar sesión</a>
         </div>
       </div>
 
@@ -85,57 +85,61 @@
 
     <div class="testimonial-wrap">
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+      <form method="post" action="/admin-regist-wheel">
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Contraseña</span>
-        <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Confirmar Contraseña</span>
-        <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Correo electrónico</span>
-        <input type="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Número teléfonico</span>
-        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Usuario(s) seguir</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="name">Nombre</span>
+          <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
-        <select class="form-select" multiple aria-label="multiple select example">
-          <option selected>Seleccione ..</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
 
-        <button type="button" class="btn btn-dark">Crear</button>
-        <button type="button" class="btn btn-dark">Cancelar</button>
-    </dir>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lastname">Apellido</span>
+          <input type="text" name="lastname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="username">Usuario</span>
+          <input type="text" name="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="password">Contraseña</span>
+          <input type="password" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="confirm-password">Confirmar Contraseña</span>
+          <input type="password" name="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="email">Correo electrónico</span>
+          <input type="email" name="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="phone">Número teléfonico</span>
+          <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Usuario(s) seguir</label>
+          </div>
+          <select class="form-select" multiple aria-label="multiple select example">
+            <option selected>Seleccione ..</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+
+          <button type="button" class="btn btn-dark">Crear</button>
+          <a href="/in/admin-list" class="btn btn-dark">Cancelar</a>
+
+        </form>
+    </div>
 
 
 

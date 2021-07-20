@@ -8,19 +8,19 @@ edu/pucmm/eict/models/Reminders.java
  edu.pucmm.eict.models.Reminders
 edu/pucmm/eict/services/RemindersServices.java
  edu.pucmm.eict.services.RemindersServices
-edu/pucmm/eict/services/UserWheelchairServices.java
- edu.pucmm.eict.services.UserWheelchairServices
-edu/pucmm/eict/models/UserTracing.java
- edu.pucmm.eict.models.UserTracing
-edu/pucmm/eict/models/UserWheelchair.java
- edu.pucmm.eict.models.UserWheelchair
 edu/pucmm/eict/services/UserTracingServices.java
  edu.pucmm.eict.services.UserTracingServices
+edu/pucmm/eict/services/UserWheelchairServices.java
+ edu.pucmm.eict.services.UserWheelchairServices
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main
+edu/pucmm/eict/models/UserWheelchair.java
+ edu.pucmm.eict.models.UserWheelchair
+edu/pucmm/eict/controllers/MainController.java
+ edu.pucmm.eict.controllers.MainController
 edu/pucmm/eict/models/Username.java
  edu.pucmm.eict.models.Username
 edu/pucmm/eict/services/UsernameServices.java
  edu.pucmm.eict.services.UsernameServices
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
-edu/pucmm/eict/controllers/MainController.java
- edu.pucmm.eict.controllers.MainController
+edu/pucmm/eict/models/UserTracing.java
+ edu.pucmm.eict.models.UserTracing
