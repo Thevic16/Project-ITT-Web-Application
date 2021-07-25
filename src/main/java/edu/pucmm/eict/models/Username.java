@@ -9,10 +9,6 @@ import javax.persistence.*;
 public class Username {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-
     private String username;
     private String password;
     private Boolean iswheelchair;
@@ -26,14 +22,6 @@ public class Username {
         this.username = username;
         this.password = password;
         this.iswheelchair = iswheelchair;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {

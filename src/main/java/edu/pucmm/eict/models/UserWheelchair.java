@@ -10,9 +10,6 @@ import javax.persistence.*;
 public class UserWheelchair implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @OneToOne
     private Username username;
     private String name;
@@ -32,14 +29,6 @@ public class UserWheelchair implements Serializable {
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Username getUsername() {

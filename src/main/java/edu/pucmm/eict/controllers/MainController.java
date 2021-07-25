@@ -1,12 +1,15 @@
 package edu.pucmm.eict.controllers;
 
+import edu.pucmm.eict.models.UserTracing;
 import edu.pucmm.eict.models.UserWheelchair;
 import edu.pucmm.eict.models.Username;
+import edu.pucmm.eict.services.UserTracingServices;
 import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import io.javalin.Javalin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,7 +153,30 @@ public class MainController extends BaseController {
                 });
 
                 post("/admin-regist-tracing", ctx -> {
+                    String name = ctx.formParam("name");
+                    String lastname = ctx.formParam("lastname");
+                    String username = ctx.formParam("username");
+                    String password = ctx.formParam("password");
+                    String email = ctx.formParam("email");
+                    String phone = ctx.formParam("phone");
 
+                    List<String> usersNameWheelchair = ctx.formParams("usersNameWheelchair");
+                    List<UserWheelchair> userWheelchairList = new ArrayList<UserWheelchair>();
+
+                    for (String usernameWheelchair:usersNameWheelchair) {
+                        UserWheelchair userWheelchair = UserWheelchairServices.getInstance().find(usernameWheelchair);
+                        userWheelchairList.add(userWheelchair);
+                    }
+
+                    Username usernameObject = new Username(username,password,false);
+                    UsernameServices.getInstance().create(usernameObject);
+
+                    UserTracing userTracing = new UserTracing(usernameObject,name,lastname,email,phone,userWheelchairList);
+
+                    UserTracingServices.getInstance().create(userTracing);
+
+
+                    ctx.redirect("/in/admin-regist-tracing");
                 });
 
 

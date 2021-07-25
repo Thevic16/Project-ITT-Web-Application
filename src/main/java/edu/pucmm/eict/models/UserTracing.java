@@ -1,17 +1,17 @@
 package edu.pucmm.eict.models;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "USERTRACING")
-public class UserTracing {
+public class UserTracing implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private int id;
     @OneToOne
     private Username username;
     private String name;
@@ -23,17 +23,17 @@ public class UserTracing {
     private List<UserWheelchair> usersWheelchair;
 
 
-
     public UserTracing() {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public UserTracing(Username username, String name, String lastname, String email, String phoneNumber, List<UserWheelchair> usersWheelchair) {
+        this.username = username;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.usersWheelchair = usersWheelchair;
     }
 
     public Username getUsername() {
