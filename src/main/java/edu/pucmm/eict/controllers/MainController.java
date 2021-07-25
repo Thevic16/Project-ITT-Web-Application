@@ -133,7 +133,7 @@ public class MainController extends BaseController {
                     UserWheelchair userWheelchair = new UserWheelchair(usernameObject,name,lastname,email,phone);
                     UserWheelchairServices.getInstance().create(userWheelchair);
 
-                    ctx.redirect("/admin-regist-wheel");
+                    ctx.redirect("/in/admin-regist-wheel");
                 });
 
                 get("/admin-regist-tracing", ctx -> {
