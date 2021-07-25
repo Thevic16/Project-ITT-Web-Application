@@ -7,6 +7,10 @@ import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import io.javalin.Javalin;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class MainController extends BaseController {
@@ -137,7 +141,12 @@ public class MainController extends BaseController {
                 });
 
                 get("/admin-regist-tracing", ctx -> {
-                    ctx.render("/public/templates/9-in-admin-regist-tracing.html");
+
+                    List<UserWheelchair> userWheelchairList = UserWheelchairServices.getInstance().findAll();
+                    Map<String, Object> model = new HashMap<>();
+                    model.put("userWheelchairList",userWheelchairList);
+
+                    ctx.render("/public/templates/9-in-admin-regist-tracing.html",model);
                 });
 
                 post("/admin-regist-tracing", ctx -> {
