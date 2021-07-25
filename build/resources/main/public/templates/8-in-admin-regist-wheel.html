@@ -85,7 +85,7 @@
 
     <div class="testimonial-wrap">
 
-      <form method="post" action="/in/admin-regist-wheel">
+      <form method="post" action="/in/admin-regist-wheel" onsubmit ="return verifyPassword()">
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="name">Nombre</span>
@@ -98,19 +98,19 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="username">Usuario</span>
-          <input type="text" name="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <span class="input-group-text">Usuario</span>
+          <input type="text" name="username" id="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="password">Contraseña</span>
-          <input type="password" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <span class="input-group-text">Contraseña</span>
+          <input type="password" name="password"  id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="confirm-password">Confirmar Contraseña</span>
-          <input type="password" name="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <span class="input-group-text">Confirmar Contraseña</span>
+          <input type="password" name="confirm-password"  id="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
@@ -199,6 +199,28 @@
 
   <!-- Template Main JS File -->
   <script src="/util-main-page/js/main.js"></script>
+
+  <script>
+    function verifyPassword() {
+      var pw1 = document.getElementById("password").value;
+      var pw2 = document.getElementById("confirm-password").value;
+
+
+      if(pw1 != pw2) {
+        alert("Las contraseñas no coinciden.")
+        return false;
+      }
+
+
+      //minimum password length validation
+      if(pw1.length < 8) {
+        alert("La contraseña debe ser de como mínimo 8 caracteres")
+        return false;
+      }
+
+
+    }
+  </script>
 
 </body>
 

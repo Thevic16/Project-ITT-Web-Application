@@ -10,8 +10,6 @@ import javax.persistence.*;
 public class UserTracing implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private int id;
     @OneToOne
     private Username username;
     private String name;
@@ -19,7 +17,7 @@ public class UserTracing implements Serializable {
     private String email;
     private String phoneNumber;
 
-    @OneToMany
+    @ManyToMany
     private List<UserWheelchair> usersWheelchair;
 
 
