@@ -9,10 +9,7 @@ import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import io.javalin.Javalin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -56,7 +53,7 @@ public class MainController extends BaseController {
             String rememberMe = ctx.formParam("rememberMe");
 
             if(username.equalsIgnoreCase("admin") && password.equals("admin")){
-                ctx.redirect("/in/admin-list");
+                ctx.redirect("/in/admin-list-wheel");
                 ctx.sessionAttribute("logged", username);
 
                 if(rememberMe != null){
@@ -117,10 +114,31 @@ public class MainController extends BaseController {
                     }
                 });
 
-                get("/admin-list", ctx -> {
-                    ctx.render("/public/templates/7-in-admin-list.html");
+                get("/admin-list-wheel", ctx -> {
+                    Map<String, Object> model = new HashMap<>();
+                    List<UserWheelchair> userWheelchairList = UserWheelchairServices.getInstance().findAll();
+                    model.put("userWheelchairList",userWheelchairList);
+
+                    ctx.render("/public/templates/7.1-in-admin-list-wheel.html",model);
                 });
 
+                get("/admin-list-tracing", ctx -> {
+                    Map<String, Object> model = new HashMap<>();
+                    List<UserTracing> userTracingList = UserTracingServices.getInstance().findAll();
+
+                    //List<String> list_listWheelchair = new ArrayList<String>();
+
+                    /*
+                    for (UserTracing userTracing: userTracingList) {
+                        list_listWheelchair.add(userTracing.getListWheelchair());
+                    }
+                     */
+
+                    model.put("userTracingList",userTracingList);
+                    //model.put("list_listWheelchair",list_listWheelchair);
+
+                    ctx.render("/public/templates/7.2-in-admin-list-tracing.html",model);
+                });
 
                 get("/admin-regist-wheel", ctx -> {
                     ctx.render("/public/templates/8-in-admin-regist-wheel.html");

@@ -17,7 +17,7 @@ public class UserTracing implements Serializable {
     private String email;
     private String phoneNumber;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserWheelchair> usersWheelchair;
 
 
@@ -81,4 +81,15 @@ public class UserTracing implements Serializable {
     public void setUsersWheelchair(List<UserWheelchair> usersWheelchair) {
         this.usersWheelchair = usersWheelchair;
     }
+
+    public String getListWheelchair(){
+       String listWheelchair = "";
+
+        for (UserWheelchair userWheelchair:usersWheelchair) {
+            listWheelchair += " "+userWheelchair.getUsername().getUsername();
+        }
+
+        return listWheelchair;
+    }
+
 }
