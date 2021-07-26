@@ -130,6 +130,17 @@ public class MainController extends BaseController {
                     ctx.redirect("/in/admin-list-wheel");
                 });
 
+                get("/admin-list-wheel/edit/:username", ctx -> {
+                    String username = ctx.pathParam("username");
+                    UserWheelchair userWheelchair = UserWheelchairServices.getInstance().find(username);
+
+                    Map<String, Object> model = new HashMap<>();
+                    model.put("userWheelchair",userWheelchair);
+                    model.put("edit",true);
+
+                    ctx.render("/public/templates/8-in-admin-regist-wheel.html",model);
+                });
+
                 get("/admin-list-tracing", ctx -> {
                     Map<String, Object> model = new HashMap<>();
                     List<UserTracing> userTracingList = UserTracingServices.getInstance().findAll();
@@ -147,11 +158,30 @@ public class MainController extends BaseController {
                     ctx.redirect("/in/admin-list-tracing");
                 });
 
-                get("/admin-regist-wheel", ctx -> {
-                    ctx.render("/public/templates/8-in-admin-regist-wheel.html");
+                get("/admin-list-tracing/edit/:username", ctx -> {
+                    String username = ctx.pathParam("username");
+                    UserTracing userTracing = UserTracingServices.getInstance().find(username);
+
+                    List<UserWheelchair> userWheelchairList = UserWheelchairServices.getInstance().findAll(); //Looking for the existing wheelchair users.
+
+
+
+                    Map<String, Object> model = new HashMap<>();
+                    model.put("userWheelchair",userTracing);
+                    model.put("edit",true);
+                    model.put("userWheelchairList",userWheelchairList);
+
+                    ctx.render("/public/templates/9-in-admin-regist-tracing.html",model);
                 });
 
-                post("/admin-regist-wheel", ctx -> {
+                get("/admin-regist-wheel", ctx -> {
+                    Map<String, Object> model = new HashMap<>();
+                    model.put("edit",false);
+
+                    ctx.render("/public/templates/8-in-admin-regist-wheel.html",model);
+                });
+
+                post("/admin-regist-wheel/:edit", ctx -> {
                     String name = ctx.formParam("name");
                     String lastname = ctx.formParam("lastname");
                     String username = ctx.formParam("username");
@@ -159,13 +189,32 @@ public class MainController extends BaseController {
                     String email = ctx.formParam("email");
                     String phone = ctx.formParam("phone");
 
-                    Username usernameObject = new Username(username,password,true);
-                    UsernameServices.getInstance().create(usernameObject);
 
-                    UserWheelchair userWheelchair = new UserWheelchair(usernameObject,name,lastname,email,phone);
-                    UserWheelchairServices.getInstance().create(userWheelchair);
+                    String edit = ctx.pathParam("edit");
 
-                    ctx.redirect("/in/admin-regist-wheel");
+                    if(edit.equalsIgnoreCase("false")){
+                        Username usernameObject = new Username(username,password,true);
+                        UsernameServices.getInstance().create(usernameObject);
+
+                        UserWheelchair userWheelchair = new UserWheelchair(usernameObject,name,lastname,email,phone);
+                        UserWheelchairServices.getInstance().create(userWheelchair);
+
+                        ctx.redirect("/in/admin-regist-wheel");
+                    }
+                    else {
+                        UserWheelchair userWheelchair = UserWheelchairServices.getInstance().find(username);
+
+                        userWheelchair.getUsername().setPassword(password);
+                        userWheelchair.setName(name);
+                        userWheelchair.setLastname(lastname);
+                        userWheelchair.setEmail(email);
+                        userWheelchair.setPhoneNumber(phone);
+
+                        UserWheelchairServices.getInstance().update(userWheelchair);
+
+                        ctx.redirect("/in/admin-list-wheel");
+                    }
+
                 });
 
                 get("/admin-regist-tracing", ctx -> {
@@ -173,11 +222,12 @@ public class MainController extends BaseController {
                     List<UserWheelchair> userWheelchairList = UserWheelchairServices.getInstance().findAll();
                     Map<String, Object> model = new HashMap<>();
                     model.put("userWheelchairList",userWheelchairList);
+                    model.put("edit",false);
 
                     ctx.render("/public/templates/9-in-admin-regist-tracing.html",model);
                 });
 
-                post("/admin-regist-tracing", ctx -> {
+                post("/admin-regist-tracing/:edit", ctx -> {
                     String name = ctx.formParam("name");
                     String lastname = ctx.formParam("lastname");
                     String username = ctx.formParam("username");
@@ -193,15 +243,33 @@ public class MainController extends BaseController {
                         userWheelchairList.add(userWheelchair);
                     }
 
-                    Username usernameObject = new Username(username,password,false);
-                    UsernameServices.getInstance().create(usernameObject);
+                    String edit = ctx.pathParam("edit");
+                    if(edit.equalsIgnoreCase("false")){
+                        Username usernameObject = new Username(username,password,false);
+                        UsernameServices.getInstance().create(usernameObject);
 
-                    UserTracing userTracing = new UserTracing(usernameObject,name,lastname,email,phone,userWheelchairList);
+                        UserTracing userTracing = new UserTracing(usernameObject,name,lastname,email,phone,userWheelchairList);
+                        UserTracingServices.getInstance().create(userTracing);
 
-                    UserTracingServices.getInstance().create(userTracing);
+                        ctx.redirect("/in/admin-regist-tracing");
+                    }
+                    else{
+                        UserTracing userTracing = UserTracingServices.getInstance().find(username);
 
+                        userTracing.getUsername().setPassword(password);
+                        userTracing.setName(name);
+                        userTracing.setLastname(lastname);
+                        userTracing.setEmail(email);
+                        userTracing.setPhoneNumber(phone);
 
-                    ctx.redirect("/in/admin-regist-tracing");
+                        userTracing.setUsersWheelchair(userWheelchairList);
+
+                        UserTracingServices.getInstance().update(userTracing);
+
+                        ctx.redirect("/in/admin-list-tracing");
+
+                    }
+
                 });
 
 
@@ -226,6 +294,19 @@ public class MainController extends BaseController {
 
             });
         });
+
+
+        app.exception(Exception.class, (e, ctx) -> {
+            // handle general exceptions here
+            // will not trigger if more specific exception-mapper found
+            ctx.render("/public/templates/11-error.html");
+        });
+
+        app.error(404, ctx -> {
+            ctx.render("/public/templates/10-no-found.html");
+        });
+
+
 
 
     }

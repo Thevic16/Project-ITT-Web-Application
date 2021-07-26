@@ -117,7 +117,7 @@
             <td th:text="${userTracing.getListWheelchair()}"> - - - </td>
 
 
-            <td><a class="btn btn-dark">Editar</a></td>
+            <td><a th:href="'/in/admin-list-tracing/edit/'+${userTracing.userName.username}"  class="btn btn-dark">Editar</a></td>
             <td><a th:href="'/in/admin-list-tracing/delete/'+${userTracing.userName.username}"  class="btn btn-danger">Eliminar</a></td>
           </tr>
           </tbody>

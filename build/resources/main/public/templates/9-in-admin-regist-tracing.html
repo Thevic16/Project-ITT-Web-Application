@@ -92,42 +92,49 @@
 
     <div class="testimonial-wrap">
 
-      <form method="post" action="/in/admin-regist-tracing" onsubmit ="return verifyPassword()">
+      <form method="post" th:action="'/in/admin-regist-tracing/'+${edit}"  onsubmit ="return verifyPassword()">
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="name">Nombre</span>
-          <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}" th:value="${userWheelchair.name}" type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="lastname">Apellido</span>
-          <input type="text" name="lastname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="text" name="lastname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}"  th:value="${userWheelchair.lastname}" type="text" name="lastname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="username">Usuario</span>
-          <input type="text" name="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="text" name="username" id="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}" th:value="${userWheelchair.username.username}" type="text" name="username" id="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required readonly>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text">Contraseña</span>
-          <input type="password" name="password" id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="password" name="password"  id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}" th:value="${userWheelchair.username.password}" type="password" name="password"  id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
 
         <div class="input-group mb-3">
           <span class="input-group-text">Confirmar Contraseña</span>
-          <input type="password" name="confirm-password" id="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="password" name="confirm-password"  id="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}"  th:value="${userWheelchair.username.password}" type="password" name="confirm-password"  id="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="email">Correo electrónico</span>
-          <input type="email" name="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="email" name="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}"  th:value="${userWheelchair.email}" type="email" name="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="phone">Número teléfonico</span>
-          <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${!edit}" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input th:if="${edit}"  th:value="${userWheelchair.phoneNumber}" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
         <div class="input-group mb-3">
@@ -139,7 +146,7 @@
           </select>
         </div>
 
-          <button class="btn btn-dark">Crear</button>
+          <button class="btn btn-dark">Enviar</button>
           <a href="/in/admin-list" class="btn btn-dark">Cancelar</a>
 
         </form>

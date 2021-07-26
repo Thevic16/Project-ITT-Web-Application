@@ -115,7 +115,7 @@
                 <td th:text="${userWheelchair.email}">Marciano23@gmail.com</td>
                 <td th:text="${userWheelchair.phoneNumber}">809-999-9999</td>
 
-                <td><a class="btn btn-dark">Editar</a></td>
+                <td><a th:href="'/in/admin-list-wheel/edit/'+${userWheelchair.userName.username}"  class="btn btn-dark">Editar</a></td>
                 <td><a th:href="'/in/admin-list-wheel/delete/'+${userWheelchair.userName.username}"  class="btn btn-danger">Eliminar</a></td>
 
               </tr>
