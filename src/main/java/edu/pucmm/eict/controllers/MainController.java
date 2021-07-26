@@ -122,22 +122,29 @@ public class MainController extends BaseController {
                     ctx.render("/public/templates/7.1-in-admin-list-wheel.html",model);
                 });
 
+                get("/admin-list-wheel/delete/:username", ctx -> {
+                    String username = ctx.pathParam("username");
+                    UserWheelchairServices.getInstance().delete(username);
+                    UsernameServices.getInstance().delete(username);
+
+                    ctx.redirect("/in/admin-list-wheel");
+                });
+
                 get("/admin-list-tracing", ctx -> {
                     Map<String, Object> model = new HashMap<>();
                     List<UserTracing> userTracingList = UserTracingServices.getInstance().findAll();
 
-                    //List<String> list_listWheelchair = new ArrayList<String>();
-
-                    /*
-                    for (UserTracing userTracing: userTracingList) {
-                        list_listWheelchair.add(userTracing.getListWheelchair());
-                    }
-                     */
-
                     model.put("userTracingList",userTracingList);
-                    //model.put("list_listWheelchair",list_listWheelchair);
 
                     ctx.render("/public/templates/7.2-in-admin-list-tracing.html",model);
+                });
+
+                get("/admin-list-tracing/delete/:username", ctx -> {
+                    String username = ctx.pathParam("username");
+                    UserTracingServices.getInstance().delete(username);
+                    UsernameServices.getInstance().delete(username);
+
+                    ctx.redirect("/in/admin-list-tracing");
                 });
 
                 get("/admin-regist-wheel", ctx -> {
