@@ -1,5 +1,6 @@
 package edu.pucmm.eict.controllers;
 
+import edu.pucmm.eict.models.Reminders;
 import edu.pucmm.eict.models.UserTracing;
 import edu.pucmm.eict.models.UserWheelchair;
 import edu.pucmm.eict.models.Username;
@@ -277,8 +278,35 @@ public class MainController extends BaseController {
                     ctx.render("/public/templates/3-in-wheel-reminder-create.html");
                 });
 
+                post("/wheel-reminder-create/:edit", ctx -> {
+                    String desciption = ctx.formParam("desciption");
+                    String monday = ctx.formParam("monday");
+                    String tuesday = ctx.formParam("tuesday");
+                    String wednesday = ctx.formParam("wednesday");
+                    String thursday = ctx.formParam("thursday");
+                    String friday = ctx.formParam("friday");
+                    String saturday = ctx.formParam("saturday");
+                    String sunday = ctx.formParam("sunday");
+                    String hour = ctx.formParam("hour");
+                    String dateEnd = ctx.formParam("dateEnd");
+
+                    String edit = ctx.pathParam("edit");
+
+                    if(edit.equalsIgnoreCase("false")){
+                        //Reminder
+
+
+                    }
+
+
+                });
+
                 get("/wheel-reminder-list", ctx -> {
                     ctx.render("/public/templates/4-in-wheel-reminder-list.html");
+                });
+
+                get("/wheel-routes", ctx -> {
+                    ctx.render("/public/templates/5-in-wheel-routes.html");
                 });
 
                 get("/tracing-tracing", ctx -> {

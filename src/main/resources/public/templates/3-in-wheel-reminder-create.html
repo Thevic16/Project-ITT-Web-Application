@@ -51,11 +51,11 @@
             <ul>
               <li class="drop-down"><a href="">Recordatorios</a>
                 <ul>
-                  <li class="active" ><a href="#">Crear</a></li>
-                  <li><a href="#">Listar</a></li>
+                  <li class="active" ><a href="/in/wheel-reminder-create">Crear</a></li>
+                  <li><a href="/in/wheel-reminder-list">Listar</a></li>
                 </ul>
               </li>     
-              <li><a href="#about">Rutas</a></li>
+              <li><a href="/in/wheel-routes">Rutas</a></li>
             </ul>
           </nav><!-- .nav-menu -->
 
@@ -83,115 +83,115 @@
         </div>
       </div>
 
-      <dir class="testimonial-wrap">
-        <div class="input-group" >
-          <div class="input-group-prepend">
-            <span class="input-group-text">Descripción</span>
+      <form method="post" th:action="'/in/wheel-reminder-create'+${edit}">
+        <div class="testimonial-wrap">
+          <div class="input-group" >
+            <div class="input-group-prepend">
+              <span class="input-group-text">Descripción</span>
+            </div>
+            <textarea th:if="${!edit}" class="form-control" aria-label="With textarea" name="desciption"></textarea>
           </div>
-          <textarea class="form-control" aria-label="With textarea"></textarea>
         </div>
 
+          <br>
 
-
-        <br>
-
-        <div>
           <div>
-            <h3>Repetir Semanalmente</h3>
-          </div>
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+            <div>
+              <h3>Repetir Semanalmente</h3>
             </div>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Lunes">
-        </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="monday">
+              </div>
             </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Lunes">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Martes">
-        </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="tuesday">
+              </div>
             </div>
+            <input  type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Martes">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Miércoles">
-        </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="wednesday">
+              </div>
             </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Miércoles">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
-        </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" name="thursday">
+              </div>
             </div>
+            <input th:if="${!edit}" type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Viernes">
-        </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="friday">
+              </div>
             </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Viernes">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Sábado">
-        </div>
 
-        <div class="input-group mb-3" >
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="saturday">
+              </div>
             </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Sábado">
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Domingo">
-        </div>
 
-        <div>
+          <div class="input-group mb-3" >
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="sunday">
+              </div>
+            </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Domingo">
+          </div>
+
           <div>
-            <h3>Seleccione hora</h3>
+            <div>
+              <h3>Seleccione hora</h3>
+            </div>
           </div>
-        </div>
 
-        <div>
-          <input type="time" id="appt" name="appt"
-          min="09:00" max="18:00" required>
-        </div>
-
-        <div>
           <div>
-            <h3>Fecha de término</h3>
+            <input th:if="${!edit}" type="time" id="appt" name="hour"
+            min="09:00" max="18:00" required>
           </div>
-        </div>
 
-        <div>
-          <input type="date" id="endDate" name="endDate">
-        </div>
-        
-        <br>
-        <br>
+          <div>
+            <div>
+              <h3>Fecha de término</h3>
+            </div>
+          </div>
 
-        <button type="button" class="btn btn-dark">Crear</button>
-        <button type="button" class="btn btn-dark">Cancelar</button>
-    </dir>
+          <div>
+            <input th:if="${!edit}" type="date" id="endDate" name="dateEnd">
+          </div>
 
+          <br>
+          <br>
+
+          <button class="btn btn-dark">Crear</button>
+          <a href="/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
+
+       </form>
 
 
     </section><!-- End Testimonials Section -->
