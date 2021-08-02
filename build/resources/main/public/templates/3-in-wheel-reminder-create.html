@@ -83,13 +83,13 @@
         </div>
       </div>
 
-      <form method="post" action="/in/wheel-reminder-create">
-        <div class="testimonial-wrap">
+      <form method="post" th:action="'/in/wheel-reminder-create/'+${edit}">
+        <div>
           <div class="input-group" >
             <div class="input-group-prepend">
               <span class="input-group-text">Descripción</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" name="desciption"></textarea>
+            <textarea th:if="${!edit}" class="form-control" aria-label="With textarea" name="desciption"></textarea>
           </div>
         </div>
 
@@ -104,7 +104,7 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="monday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="monday">
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Lunes">
@@ -113,16 +113,16 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="tuesday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="tuesday">
               </div>
             </div>
-            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Martes">
+            <input  type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Martes">
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="wednesday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="wednesday">
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Miércoles">
@@ -134,13 +134,13 @@
                 <input type="checkbox" aria-label="Checkbox for following text input" name="thursday">
               </div>
             </div>
-            <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
+            <input th:if="${!edit}" type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="friday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="friday">
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Viernes">
@@ -149,7 +149,7 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="saturday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="saturday">
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Sábado">
@@ -158,7 +158,7 @@
           <div class="input-group mb-3" >
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="sunday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="sunday">
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Domingo">
@@ -171,7 +171,7 @@
           </div>
 
           <div>
-            <input type="time" id="appt" name="hour"
+            <input th:if="${!edit}" type="time" id="appt" name="hour"
             min="09:00" max="18:00" required>
           </div>
 
@@ -182,7 +182,7 @@
           </div>
 
           <div>
-            <input type="date" id="endDate" name="dateEnd">
+            <input th:if="${!edit}" type="date" id="endDate" name="dateEnd">
           </div>
 
           <br>
@@ -192,9 +192,6 @@
           <a href="/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
 
        </form>
-
-
-
 
 
     </section><!-- End Testimonials Section -->

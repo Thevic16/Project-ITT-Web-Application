@@ -1,15 +1,18 @@
 package edu.pucmm.eict.controllers;
 
-import edu.pucmm.eict.models.Reminders;
+import edu.pucmm.eict.models.Reminder;
 import edu.pucmm.eict.models.UserTracing;
 import edu.pucmm.eict.models.UserWheelchair;
 import edu.pucmm.eict.models.Username;
+import edu.pucmm.eict.services.ReminderServices;
 import edu.pucmm.eict.services.UserTracingServices;
 import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import io.javalin.Javalin;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -275,7 +278,10 @@ public class MainController extends BaseController {
 
 
                 get("/wheel-reminder-create", ctx -> {
-                    ctx.render("/public/templates/3-in-wheel-reminder-create.html");
+                    Map<String, Object> model = new HashMap<>();
+                    model.put("edit",false);
+
+                    ctx.render("/public/templates/3-in-wheel-reminder-create.html",model);
                 });
 
                 post("/wheel-reminder-create/:edit", ctx -> {
@@ -290,19 +296,90 @@ public class MainController extends BaseController {
                     String hour = ctx.formParam("hour");
                     String dateEnd = ctx.formParam("dateEnd");
 
+                    Boolean mondayBoolean;
+                    Boolean tuesdayBoolean;
+                    Boolean wednesdayBoolean;
+                    Boolean thursdayBoolean;
+                    Boolean fridayBoolean;
+                    Boolean saturdayBoolean;
+                    Boolean sundayBoolean;
+
+                    if(monday != null){
+                        mondayBoolean = true;
+                    }
+                    else {
+                        mondayBoolean = false;
+                    }
+
+                    if(tuesday != null){
+                        tuesdayBoolean = true;
+                    }
+                    else {
+                        tuesdayBoolean = false;
+                    }
+
+                    if(wednesday != null){
+                        wednesdayBoolean = true;
+                    }
+                    else {
+                        wednesdayBoolean = false;
+                    }
+
+                    if(thursday != null){
+                        thursdayBoolean = true;
+                    }
+                    else {
+                        thursdayBoolean = false;
+                    }
+
+                    if(friday != null){
+                        fridayBoolean = true;
+                    }
+                    else {
+                        fridayBoolean = false;
+                    }
+
+                    if(saturday != null){
+                        saturdayBoolean = true;
+                    }
+                    else {
+                        saturdayBoolean = false;
+                    }
+
+                    if(sunday != null){
+                        sundayBoolean = true;
+                    }
+                    else {
+                        sundayBoolean = false;
+                    }
+
+                    LocalTime hourLocalTime=  LocalTime.of(Integer.parseInt(hour.substring(0,2)),Integer.parseInt(hour.substring(3,5)));
+                    LocalDate dateEndLocalDate = LocalDate.of(Integer.parseInt(dateEnd.substring(0,4)),Integer.parseInt(dateEnd.substring(5,7)),Integer.parseInt(dateEnd.substring(8,10)));
+
                     String edit = ctx.pathParam("edit");
 
                     if(edit.equalsIgnoreCase("false")){
-                        //Reminder
 
+                        String username = ctx.sessionAttribute("logged");
 
+                        Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,username);
+                        ReminderServices.getInstance().create(reminder);
+
+                        ctx.redirect("/in/wheel-reminder-create");
                     }
 
 
                 });
 
                 get("/wheel-reminder-list", ctx -> {
-                    ctx.render("/public/templates/4-in-wheel-reminder-list.html");
+                    Map<String, Object> model = new HashMap<>();
+
+                    String username = ctx.sessionAttribute("logged");
+                    List<Reminder> reminders = Reminder.findRemandersByUsername(username);
+
+                    model.put("reminders",reminders);
+
+                    ctx.render("/public/templates/4-in-wheel-reminder-list.html",model);
                 });
 
                 get("/wheel-routes", ctx -> {
