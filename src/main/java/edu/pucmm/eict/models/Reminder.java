@@ -5,6 +5,7 @@ import edu.pucmm.eict.services.ReminderServices;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,29 +169,34 @@ public class Reminder {
     public String repeat(){
         String repeat ="";
 
-        if(monday=true){
-            repeat += "Monday";
+        if(monday==true){
+            repeat += "Lunes";
         }
-        if(tuesday=true){
-            repeat += " Tuesday";
+        if(tuesday==true){
+            repeat += " Martes";
         }
-        if(wednesday=true){
-            repeat += " Wednesday";
+        if(wednesday==true){
+            repeat += " Miércoles";
         }
-        if(thursday=true){
-            repeat += " Thursday";
+        if(thursday==true){
+            repeat += " Jueves";
         }
-        if(friday=true){
-            repeat += " Friday";
+        if(friday==true){
+            repeat += " Viernes";
         }
-        if(saturday=true){
-            repeat += " Saturday";
+        if(saturday==true){
+            repeat += " Sábado";
         }
-        if(sunday=true){
-            repeat += " Sunday";
+        if(sunday==true){
+            repeat += " Domingo";
         }
 
         return repeat;
+    }
+
+    public String getDateEndSpanish(){
+
+        return this.dateEnd.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
 

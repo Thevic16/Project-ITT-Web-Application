@@ -90,7 +90,7 @@
               <tr>
                 <th scope="col" >Descripción</th>
                 <th scope="col">Repetir</th>
-                <th scope="col">Hora</th>
+                <th scope="col">Hora (Sistema 24h)</th>
                 <th scope="col">Fecha de término</th>
                 <th scope="col">Acción 1</th>
                 <th scope="col">Acción 2</th>
@@ -101,7 +101,7 @@
                 <th scope="row" th:text="${reminder.desciption}" >Tomar pastillas</th>
                 <td th:text="${reminder.repeat()}" >Lunes,Miercoles y Sábado</td>
                 <td th:text="${reminder.hour}" >10:30 am</td>
-                <td th:text="${reminder.dateEnd}" >12/07/2021</td>
+                <td th:text="${reminder.getDateEndSpanish()}" >12/07/2021</td>
                 <td><button type="button" class="btn btn-dark">Editar</button></td>
                 <td><button type="button" class="btn btn-danger">Eliminar</button></td>
               </tr>

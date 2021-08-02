@@ -16,10 +16,10 @@ edu/pucmm/eict/services/DatabaseSetupServices.java
  edu.pucmm.eict.services.DatabaseSetupServices
 edu/pucmm/eict/models/UserWheelchair.java
  edu.pucmm.eict.models.UserWheelchair
-edu/pucmm/eict/services/ReminderServices.java
- edu.pucmm.eict.services.ReminderServices
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
+edu/pucmm/eict/services/ReminderServices.java
+ edu.pucmm.eict.services.ReminderServices
 edu/pucmm/eict/models/Reminder.java
  edu.pucmm.eict.models.Reminder
 edu/pucmm/eict/controllers/MainController.java
