@@ -382,9 +382,19 @@ public class MainController extends BaseController {
                     ctx.render("/public/templates/4-in-wheel-reminder-list.html",model);
                 });
 
+                get("/wheel-reminder-list/delete/:id", ctx -> {
+                    int id = ctx.pathParam("id",int.class).get();
+
+                    ReminderServices.getInstance().delete(id);
+
+                    ctx.redirect("/in/wheel-reminder-list");
+                });
+
+
                 get("/wheel-routes", ctx -> {
                     ctx.render("/public/templates/5-in-wheel-routes.html");
                 });
+
 
                 get("/tracing-tracing", ctx -> {
                     ctx.render("/public/templates/6-in-tracing-tracing.html");
