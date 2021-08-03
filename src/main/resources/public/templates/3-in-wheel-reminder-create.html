@@ -89,7 +89,9 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Descripción</span>
             </div>
-            <textarea th:if="${!edit}" class="form-control" aria-label="With textarea" name="desciption"></textarea>
+            <input th:if="${!edit}" type="text" class="form-control" aria-label="With textarea" name="desciption">
+            <input th:if="${edit}" th:value="${reminder.desciption}" type="text"  class="form-control" aria-label="With textarea" name="desciption"></input>
+
           </div>
         </div>
 
@@ -105,6 +107,9 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="monday">
+                <input th:if="${edit} and ${!reminder.monday}"  type="checkbox" aria-label="Checkbox for following text input" name="monday">
+                <input th:if="${edit} and ${reminder.monday}"  type="checkbox" aria-label="Checkbox for following text input" name="monday" checked>
+
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Lunes">
@@ -114,6 +119,9 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="tuesday">
+                <input th:if="${edit} and ${!reminder.tuesday}" type="checkbox" aria-label="Checkbox for following text input" name="tuesday">
+                <input th:if="${edit} and ${reminder.tuesday}" type="checkbox" aria-label="Checkbox for following text input" name="tuesday" checked >
+
               </div>
             </div>
             <input  type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Martes">
@@ -123,6 +131,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="wednesday">
+                <input th:if="${edit} and ${!reminder.wednesday}" type="checkbox" aria-label="Checkbox for following text input" name="wednesday">
+                <input th:if="${edit} and ${reminder.wednesday}" type="checkbox" aria-label="Checkbox for following text input" name="wednesday" checked>
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Miércoles">
@@ -131,16 +141,20 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="thursday">
+                <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="thursday">
+                <input th:if="${edit} and ${!reminder.thursday}" type="checkbox" aria-label="Checkbox for following text input" name="thursday">
+                <input th:if="${edit} and ${reminder.thursday}"  type="checkbox" aria-label="Checkbox for following text input" name="thursday" checked>
               </div>
             </div>
-            <input th:if="${!edit}" type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
+            <input  type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Jueves">
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="friday">
+                <input th:if="${edit} and ${!reminder.friday}"  type="checkbox" aria-label="Checkbox for following text input" name="friday">
+                <input th:if="${edit} and ${reminder.friday}"  type="checkbox" aria-label="Checkbox for following text input" name="friday" checked>
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Viernes">
@@ -150,6 +164,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="saturday">
+                <input th:if="${edit} and ${!reminder.saturday}"  type="checkbox" aria-label="Checkbox for following text input" name="saturday">
+                <input th:if="${edit} and ${reminder.saturday}"  type="checkbox" aria-label="Checkbox for following text input" name="saturday" checked>
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Sábado">
@@ -159,6 +175,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input th:if="${!edit}" type="checkbox" aria-label="Checkbox for following text input" name="sunday">
+                <input th:if="${edit} and ${!reminder.sunday}"  type="checkbox" aria-label="Checkbox for following text input" name="sunday">
+                <input th:if="${edit} and ${reminder.sunday}"  type="checkbox" aria-label="Checkbox for following text input" name="sunday" checked>
               </div>
             </div>
             <input type="text" class="form-control" aria-label="Text input with checkbox" disabled value="Domingo">
@@ -172,7 +190,21 @@
 
           <div>
             <input th:if="${!edit}" type="time" id="appt" name="hour" required>
+            <input th:if="${edit}" th:value="${reminder.hour}" type="time" id="appt" name="hour" required>
           </div>
+
+
+        <div>
+          <div>
+            <h3>¿Siempre?</h3>
+          </div>
+        </div>
+
+        <div>
+          <input th:if="${!edit}" type="checkbox" id="always" name="always" onclick="checkAlways()">
+          <input th:if="${edit} and ${!reminder.always}" type="checkbox" id="always" name="always" onclick="checkAlways()">
+          <input th:if="${edit} and ${reminder.always}" type="checkbox" id="always" name="always" onclick="checkAlways()" checked>
+        </div>
 
           <div>
             <div>
@@ -182,10 +214,14 @@
 
           <div>
             <input th:if="${!edit}" type="date" id="endDate" name="dateEnd">
+            <input th:if="${edit} and ${!reminder.always}" th:value="${reminder.dateEnd}"  type="date" id="endDate" name="dateEnd">
+            <input th:if="${edit} and ${reminder.always}" type="date" id="endDate" name="dateEnd" disabled>
+
           </div>
 
           <br>
           <br>
+          <input th:if="${edit}" th:value="${reminder.id}" type="number" id="id" name="id" hidden>
 
           <button class="btn btn-dark">Crear</button>
           <a href="/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
@@ -260,6 +296,21 @@
 
   <!-- Template Main JS File -->
   <script src="/util-main-page/js/main.js"></script>
+
+  <script>
+      function checkAlways(){
+        let checkBox = document.getElementById("always");
+
+        let dateEnd = document.getElementById("endDate");
+
+        if (checkBox.checked == true){
+          dateEnd.disabled = true;
+        } else {
+          dateEnd.disabled = false;
+        }
+
+      }
+  </script>
 
 </body>
 

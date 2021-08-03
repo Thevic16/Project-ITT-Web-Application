@@ -294,6 +294,7 @@ public class MainController extends BaseController {
                     String saturday = ctx.formParam("saturday");
                     String sunday = ctx.formParam("sunday");
                     String hour = ctx.formParam("hour");
+                    String always = ctx.formParam("always");
                     String dateEnd = ctx.formParam("dateEnd");
 
                     Boolean mondayBoolean;
@@ -303,6 +304,7 @@ public class MainController extends BaseController {
                     Boolean fridayBoolean;
                     Boolean saturdayBoolean;
                     Boolean sundayBoolean;
+                    Boolean alwaysBoolean;
 
                     if(monday != null){
                         mondayBoolean = true;
@@ -353,8 +355,21 @@ public class MainController extends BaseController {
                         sundayBoolean = false;
                     }
 
+                    if(always != null){
+                        alwaysBoolean = true;
+                    }
+                    else {
+                        alwaysBoolean = false;
+                    }
+
+
                     LocalTime hourLocalTime=  LocalTime.of(Integer.parseInt(hour.substring(0,2)),Integer.parseInt(hour.substring(3,5)));
-                    LocalDate dateEndLocalDate = LocalDate.of(Integer.parseInt(dateEnd.substring(0,4)),Integer.parseInt(dateEnd.substring(5,7)),Integer.parseInt(dateEnd.substring(8,10)));
+
+                    LocalDate dateEndLocalDate = null;
+
+                    if(!alwaysBoolean){
+                        dateEndLocalDate = LocalDate.of(Integer.parseInt(dateEnd.substring(0,4)),Integer.parseInt(dateEnd.substring(5,7)),Integer.parseInt(dateEnd.substring(8,10)));
+                    }
 
                     String edit = ctx.pathParam("edit");
 
@@ -362,12 +377,31 @@ public class MainController extends BaseController {
 
                         String username = ctx.sessionAttribute("logged");
 
-                        Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,username);
+                        Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean);
                         ReminderServices.getInstance().create(reminder);
 
                         ctx.redirect("/in/wheel-reminder-create");
                     }
+                    else {
+                        int id = ctx.formParam("id",int.class).get();
 
+                        Reminder reminder = ReminderServices.getInstance().find(id);
+
+                        reminder.setDesciption(desciption);
+                        reminder.setMonday(mondayBoolean);
+                        reminder.setTuesday(tuesdayBoolean);
+                        reminder.setWednesday(wednesdayBoolean);
+                        reminder.setThursday(thursdayBoolean);
+                        reminder.setFriday(fridayBoolean);
+                        reminder.setSaturday(saturdayBoolean);
+                        reminder.setSunday(sundayBoolean);
+                        reminder.setHour(hourLocalTime);
+                        reminder.setDateEnd(dateEndLocalDate);
+                        reminder.setAlways(alwaysBoolean);
+
+                        ctx.redirect("in/wheel-reminder-list");
+
+                    }
 
                 });
 
@@ -388,6 +422,20 @@ public class MainController extends BaseController {
                     ReminderServices.getInstance().delete(id);
 
                     ctx.redirect("/in/wheel-reminder-list");
+                });
+
+
+                get("/wheel-reminder-list/edit/:id", ctx -> {
+                    int id = ctx.pathParam("id",int.class).get();
+
+                    Reminder reminder = ReminderServices.getInstance().find(id);
+
+                    Map<String, Object> model = new HashMap<>();
+
+                    model.put("reminder",reminder);
+                    model.put("edit",true);
+
+                    ctx.render("/public/templates/3-in-wheel-reminder-create.html",model);
                 });
 
 

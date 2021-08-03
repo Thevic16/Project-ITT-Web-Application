@@ -33,10 +33,13 @@ public class Reminder {
     private LocalTime hour;
     private LocalDate dateEnd;
 
-    private String username;
+    @OneToOne
+    private Username username;
+
+    private Boolean always;
 
 
-    public Reminder(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, String username) {
+    public Reminder(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always) {
         this.desciption = desciption;
         this.monday = monday;
         this.tuesday = tuesday;
@@ -48,6 +51,7 @@ public class Reminder {
         this.hour = hour;
         this.dateEnd = dateEnd;
         this.username = username;
+        this.always = always;
     }
 
     public Reminder() {
@@ -143,12 +147,20 @@ public class Reminder {
         this.dateEnd = dateEnd;
     }
 
-    public String getUsername() {
+    public Username getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Username username) {
         this.username = username;
+    }
+
+    public Boolean getAlways() {
+        return always;
+    }
+
+    public void setAlways(Boolean always) {
+        this.always = always;
     }
 
     public static List<Reminder> findRemandersByUsername(String username){
@@ -157,7 +169,7 @@ public class Reminder {
 
         for (Reminder reminder:allRemanders) {
 
-            if(reminder.username.equals(username)){
+            if(reminder.username.getUsername().equals(username)){
                 filteredRemanders.add(reminder);
             }
 
@@ -195,8 +207,13 @@ public class Reminder {
     }
 
     public String getDateEndSpanish(){
+        if(this.always){
+            return "Siempre";
+        }
+        else {
+            return this.dateEnd.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        }
 
-        return this.dateEnd.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
 

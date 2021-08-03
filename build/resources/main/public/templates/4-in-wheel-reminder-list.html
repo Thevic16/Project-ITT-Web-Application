@@ -102,7 +102,7 @@
                 <td th:text="${reminder.repeat()}" >Lunes,Miercoles y Sábado</td>
                 <td th:text="${reminder.hour}" >10:30 am</td>
                 <td th:text="${reminder.getDateEndSpanish()}">12/07/2021</td>
-                <td><a class="btn btn-dark">Editar</a></td>
+                <td><a th:href="'/in/wheel-reminder-list/edit/'+${reminder.id}"  class="btn btn-dark">Editar</a></td>
                 <td><a th:href="'/in/wheel-reminder-list/delete/'+${reminder.id}"  class="btn btn-danger">Eliminar</a></td>
               </tr>
             </tbody>
