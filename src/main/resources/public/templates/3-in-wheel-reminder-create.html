@@ -223,7 +223,8 @@
           <br>
           <input th:if="${edit}" th:value="${reminder.id}" type="number" id="id" name="id" hidden>
 
-          <button class="btn btn-dark">Crear</button>
+          <button class="btn btn-dark" th:if="${!edit}" >Crear</button>
+          <button class="btn btn-dark" th:if="${edit}">Editar</button>
           <a href="/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
 
        </form>

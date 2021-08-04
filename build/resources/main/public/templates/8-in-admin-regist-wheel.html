@@ -142,7 +142,8 @@
           <input th:if="${edit}"  th:value="${userWheelchair.phoneNumber}" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
-          <button id="bottonCreate" class="btn btn-dark">Enviar</button>
+          <button th:if="${edit}" id="bottonCreate" class="btn btn-dark">Editar</button>
+          <button th:if="${!edit}" id="bottonCreate" class="btn btn-dark">Enviar</button>
           <a href="/in/admin-list" class="btn btn-dark">Cancelar</a>
 
       </form>

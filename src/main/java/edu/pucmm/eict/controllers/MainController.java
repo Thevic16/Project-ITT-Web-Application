@@ -399,7 +399,9 @@ public class MainController extends BaseController {
                         reminder.setDateEnd(dateEndLocalDate);
                         reminder.setAlways(alwaysBoolean);
 
-                        ctx.redirect("in/wheel-reminder-list");
+                        ReminderServices.getInstance().update(reminder);
+
+                        ctx.redirect("/in/wheel-reminder-list");
 
                     }
 
