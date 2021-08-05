@@ -69,53 +69,50 @@
     </section><!-- End Breadcrumbs -->
 
     <section id="testimonials" class="testimonials">
-      <div class="container">
-        <div class="section-title">
-          <h2>Formulario de registro usuario silla de ruedas</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+      <form method="post" action="/wheelchair"  onsubmit ="return verifyPassword()">
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="name">Nombre</span>
+          <input  type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
-      </div>
 
-    <div class="testimonial-wrap">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lastname">Apellido</span>
+          <input type="text" name="lastname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="name">Nombre</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Usuario</span>
+          <input type="text" name="username" id="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="lastname">Apellido</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="username">Usuario</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
-
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="password">Contraseña</span>
-        <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Contraseña</span>
+          <input  type="password" name="password"  id="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="confirm-password">Confirmar Contraseña</span>
-        <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Confirmar Contraseña</span>
+          <input type="password" name="confirm-password"  id="confirm-password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="email">Correo electrónico</span>
-        <input type="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="email">Correo electrónico</span>
+          <input type="email" name="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="phone">Número teléfonico</span>
-        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="phone">Número teléfonico</span>
+          <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        </div>
 
-        <button type="button" class="btn btn-dark">Solicitar registro</button>
-        <button type="button" class="btn btn-dark">Cancelar</button>
+        <button id="bottonCreate" class="btn btn-dark">Solicitar registro</button>
+        <a href="/" class="btn btn-dark">Cancelar</a>
+
+      </form>
+
+
     </div>
 
 
@@ -187,6 +184,28 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function verifyPassword() {
+      var pw1 = document.getElementById("password").value;
+      var pw2 = document.getElementById("confirm-password").value;
+
+
+      if(pw1 != pw2) {
+        alert("Las contraseñas no coinciden.")
+        return false;
+      }
+
+
+      //minimum password length validation
+      if(pw1.length < 8) {
+        alert("La contraseña debe ser de como mínimo 8 caracteres")
+        return false;
+      }
+
+
+    }
+  </script>
 
 </body>
 
