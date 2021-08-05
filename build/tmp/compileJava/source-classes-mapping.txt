@@ -1,3 +1,6 @@
+edu/pucmm/eict/util/EmailUtility.java
+ edu.pucmm.eict.util.EmailUtility
+ edu.pucmm.eict.util.EmailUtility$1
 edu/pucmm/eict/services/ReminderServices.java
  edu.pucmm.eict.services.ReminderServices
 edu/pucmm/eict/services/UserWheelchairServices.java

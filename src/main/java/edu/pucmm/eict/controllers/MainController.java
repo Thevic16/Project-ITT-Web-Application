@@ -9,6 +9,7 @@ import edu.pucmm.eict.services.UserTracingServices;
 import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
+import edu.pucmm.eict.util.EmailUtility;
 import io.javalin.Javalin;
 
 import java.time.LocalDate;
@@ -47,9 +48,54 @@ public class MainController extends BaseController {
             ctx.render("/public/templates/2.1-outside-regist-wheel.html");
         });
 
-        app.get("/tracing", ctx -> {
-            ctx.render("/public/templates/2.2-outside-regist-tracing.html.html");
+        app.post("/wheelchair", ctx -> {
+            String name = ctx.formParam("name");
+            String lastname = ctx.formParam("lastname");
+            String username = ctx.formParam("username");
+            String password = ctx.formParam("password");
+            String email = ctx.formParam("email");
+            String phone = ctx.formParam("phone");
+
+            EmailUtility emailUtility = new EmailUtility();
+            emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Solicitud Usuario silla de ruedas.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Usuario:"+username+"\r\n"+"Contraseña:"+password+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone);
+
+            ctx.redirect("/wheelchair");
+
         });
+
+        app.get("/tracing", ctx -> {
+            List<UserWheelchair> userWheelchairList = UserWheelchairServices.getInstance().findAll();
+            Map<String, Object> model = new HashMap<>();
+            model.put("userWheelchairList",userWheelchairList);
+
+            ctx.render("/public/templates/2.2-outside-regist-tracing.html.html",model);
+        });
+
+        app.post("/tracing", ctx -> {
+            String name = ctx.formParam("name");
+            String lastname = ctx.formParam("lastname");
+            String username = ctx.formParam("username");
+            String password = ctx.formParam("password");
+            String email = ctx.formParam("email");
+            String phone = ctx.formParam("phone");
+
+            List<String> usersNameWheelchair = ctx.formParams("usersNameWheelchair");
+
+            String usersTracking = "";
+
+            usersTracking = usersNameWheelchair.get(0);
+
+            for (int i=1;i<usersNameWheelchair.size();i++){
+                usersTracking += "," + usersNameWheelchair.get(i);
+            }
+
+            EmailUtility emailUtility = new EmailUtility();
+            emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Solicitud Usuario seguimiento.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Usuario:"+username+"\r\n"+"Contraseña:"+password+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone+"Usuario(s) seguir:"+ usersTracking);
+
+            ctx.redirect("/wheelchair");
+
+        });
+
 
         app.post("/validate-login", ctx -> {
             String username = ctx.formParam("username");
