@@ -59,6 +59,7 @@ public class MainController extends BaseController {
             EmailUtility emailUtility = new EmailUtility();
             emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Solicitud Usuario silla de ruedas.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Usuario:"+username+"\r\n"+"Contraseña:"+password+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone);
 
+
             ctx.redirect("/wheelchair");
 
         });
@@ -90,9 +91,9 @@ public class MainController extends BaseController {
             }
 
             EmailUtility emailUtility = new EmailUtility();
-            emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Solicitud Usuario seguimiento.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Usuario:"+username+"\r\n"+"Contraseña:"+password+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone+"Usuario(s) seguir:"+ usersTracking);
+            emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Solicitud Usuario seguimiento.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Usuario:"+username+"\r\n"+"Contraseña:"+password+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone+"\r\n"+"Usuario(s) seguir:"+ usersTracking);
 
-            ctx.redirect("/wheelchair");
+            ctx.redirect("/tracing");
 
         });
 
