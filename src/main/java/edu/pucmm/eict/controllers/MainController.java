@@ -40,6 +40,20 @@ public class MainController extends BaseController {
             ctx.render("/public/templates/2.3-outside-forgot-message.html");
         });
 
+        app.post("/forgot", ctx -> {
+            String name = ctx.formParam("name");
+            String lastname = ctx.formParam("lastname");
+            String email = ctx.formParam("email");
+            String phone = ctx.formParam("phone");
+
+            EmailUtility emailUtility = new EmailUtility();
+            emailUtility.sendMail( "proyectosilladeruedasitt@gmail.com", "Formulario restablecimiento de usuario/contraseña.", "Nombre:"+name+"\r\n"+"Apellido:"+lastname+"\r\n"+"Correo electrónico: "+email+"\r\n"+"Teléfono:"+phone);
+
+
+            ctx.redirect("/");
+
+        });
+
         app.get("/select", ctx -> {
             ctx.render("/public/templates/2.0-outside-select-user.html");
         });

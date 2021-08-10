@@ -18,34 +18,37 @@
     <h1>Mensaje informativo</h1>
   <p class="zoom-area"><b>Si olvido su usuario u contraseña</b> por favor llene el siguiente formulario. </p>
 
-  <div class="container">
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="name">Nombre</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+  <form method="post" th:action="forgot">
+
+    <div class="container">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="name">Nombre</span>
+        <input name="name" type="text"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="lastname">Apellido</span>
+        <input name="lastname" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="email">Correo electrónico</span>
+        <input name="email" type="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="phone">Número teléfonico</span>
+        <input name="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
     </div>
-  
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="lastname">Apellido</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-  
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="email">Correo electrónico</span>
-      <input type="email" placeholder="ej: silladeruedas@telecos.me" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-  
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="phone">Número teléfonico</span>
-      <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-  </div>
 
 
-  <div class="link-container">
-    <a href="" class="btn btn-danger">Enviar</a>
-    <a href="" class="btn btn-danger">Volver página principal</a>
-  </div>
-  
+    <div class="link-container">
+      <button class="btn btn-danger">Enviar</button>
+      <a href="/" class="btn btn-danger">Volver página principal</a>
+    </div>
+  </form>
+
 </body>
 </html>
 
