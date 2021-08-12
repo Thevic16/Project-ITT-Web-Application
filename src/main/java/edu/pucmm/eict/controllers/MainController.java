@@ -10,6 +10,8 @@ import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import edu.pucmm.eict.util.EmailUtility;
+import edu.pucmm.eict.util.ReminderSchedule;
+import edu.pucmm.eict.util.ReminderScheduleUtil;
 import io.javalin.Javalin;
 
 import java.time.LocalDate;
@@ -20,8 +22,12 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class MainController extends BaseController {
 
+    private HashMap<Integer, ReminderScheduleUtil> ReminderScheduleUtilMap;
+
     public MainController(Javalin app) {
         super(app);
+
+        this.ReminderScheduleUtilMap = new HashMap<Integer, ReminderScheduleUtil>();
     }
 
     @Override
@@ -258,10 +264,10 @@ public class MainController extends BaseController {
                     String edit = ctx.pathParam("edit");
 
                     if(edit.equalsIgnoreCase("false")){
-                        Username usernameObject = new Username(username,password,true);
+                        Username usernameObject = new Username(username,password,true,name,lastname,email,phone);
                         UsernameServices.getInstance().create(usernameObject);
 
-                        UserWheelchair userWheelchair = new UserWheelchair(usernameObject,name,lastname,email,phone);
+                        UserWheelchair userWheelchair = new UserWheelchair(usernameObject);
                         UserWheelchairServices.getInstance().create(userWheelchair);
 
                         ctx.redirect("/in/admin-regist-wheel");
@@ -270,10 +276,10 @@ public class MainController extends BaseController {
                         UserWheelchair userWheelchair = UserWheelchairServices.getInstance().find(username);
 
                         userWheelchair.getUsername().setPassword(password);
-                        userWheelchair.setName(name);
-                        userWheelchair.setLastname(lastname);
-                        userWheelchair.setEmail(email);
-                        userWheelchair.setPhoneNumber(phone);
+                        userWheelchair.getUsername().setName(name);
+                        userWheelchair.getUsername().setLastname(lastname);
+                        userWheelchair.getUsername().setEmail(email);
+                        userWheelchair.getUsername().setPhoneNumber(phone);
 
                         UserWheelchairServices.getInstance().update(userWheelchair);
 
@@ -310,10 +316,10 @@ public class MainController extends BaseController {
 
                     String edit = ctx.pathParam("edit");
                     if(edit.equalsIgnoreCase("false")){
-                        Username usernameObject = new Username(username,password,false);
+                        Username usernameObject = new Username(username,password,false,name,lastname,email,phone);
                         UsernameServices.getInstance().create(usernameObject);
 
-                        UserTracing userTracing = new UserTracing(usernameObject,name,lastname,email,phone,userWheelchairList);
+                        UserTracing userTracing = new UserTracing(usernameObject,userWheelchairList);
                         UserTracingServices.getInstance().create(userTracing);
 
                         ctx.redirect("/in/admin-regist-tracing");
@@ -322,10 +328,10 @@ public class MainController extends BaseController {
                         UserTracing userTracing = UserTracingServices.getInstance().find(username);
 
                         userTracing.getUsername().setPassword(password);
-                        userTracing.setName(name);
-                        userTracing.setLastname(lastname);
-                        userTracing.setEmail(email);
-                        userTracing.setPhoneNumber(phone);
+                        userTracing.getUsername().setName(name);
+                        userTracing.getUsername().setLastname(lastname);
+                        userTracing.getUsername().setEmail(email);
+                        userTracing.getUsername().setPhoneNumber(phone);
 
                         userTracing.setUsersWheelchair(userWheelchairList);
 
@@ -441,6 +447,12 @@ public class MainController extends BaseController {
                         Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean);
                         ReminderServices.getInstance().create(reminder);
 
+                        ReminderScheduleUtil reminderScheduleUtil = new ReminderScheduleUtil();
+
+                        reminderScheduleUtil.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean);
+
+                        this.ReminderScheduleUtilMap.put(reminder.getId(),reminderScheduleUtil);
+
                         ctx.redirect("/in/wheel-reminder-create");
                     }
                     else {
@@ -462,6 +474,15 @@ public class MainController extends BaseController {
 
                         ReminderServices.getInstance().update(reminder);
 
+                        //Reminder email
+                        ReminderScheduleUtil reminderScheduleUtil = this.ReminderScheduleUtilMap.get(id);
+                        reminderScheduleUtil.cancelReminderSchedule();
+
+                        ReminderScheduleUtil reminderScheduleUtilnew = new ReminderScheduleUtil();
+                        this.ReminderScheduleUtilMap.put(id,reminderScheduleUtilnew);
+                        reminderScheduleUtilnew.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,reminder.getUsername(),alwaysBoolean);
+
+
                         ctx.redirect("/in/wheel-reminder-list");
 
                     }
@@ -481,6 +502,9 @@ public class MainController extends BaseController {
 
                 get("/wheel-reminder-list/delete/:id", ctx -> {
                     int id = ctx.pathParam("id",int.class).get();
+
+                    ReminderScheduleUtil reminderScheduleUtil = this.ReminderScheduleUtilMap.get(id);
+                    reminderScheduleUtil.cancelReminderSchedule();
 
                     ReminderServices.getInstance().delete(id);
 
@@ -517,7 +541,6 @@ public class MainController extends BaseController {
                     ctx.redirect("/");
                 });
 
-
             });
         });
 
@@ -532,10 +555,6 @@ public class MainController extends BaseController {
             ctx.render("/public/templates/10-no-found.html");
         });
 
-
-
-
     }
-
 
 }

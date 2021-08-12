@@ -2,12 +2,13 @@ package edu.pucmm.eict.models;
 
 
 import edu.pucmm.eict.services.ReminderServices;
+import edu.pucmm.eict.util.ReminderSchedule;
+import edu.pucmm.eict.util.ReminderScheduleUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -213,8 +214,6 @@ public class Reminder {
         else {
             return this.dateEnd.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
-
     }
-
 
 }

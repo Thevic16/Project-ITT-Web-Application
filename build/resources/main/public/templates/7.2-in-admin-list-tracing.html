@@ -109,16 +109,16 @@
           </thead>
           <tbody>
           <tr th:each="userTracing : ${userTracingList}">
-            <th scope="row" th:text="${userTracing.name}"> Antonio</th>
-            <td th:text="${userTracing.lastname}"> Marte</td>
+            <th scope="row" th:text="${userTracing.username.name}"> Antonio</th>
+            <td th:text="${userTracing.username.lastname}"> Marte</td>
             <td th:text="${userTracing.username.username}"> Marciano23</td>
-            <td th:text="${userTracing.email}">Marciano23@gmail.com</td>
-            <td th:text="${userTracing.phoneNumber}">809-999-9999</td>
+            <td th:text="${userTracing.username.email}">Marciano23@gmail.com</td>
+            <td th:text="${userTracing.username.phoneNumber}">809-999-9999</td>
             <td th:text="${userTracing.getListWheelchair()}"> - - - </td>
 
 
-            <td><a th:href="'/in/admin-list-tracing/edit/'+${userTracing.userName.username}"  class="btn btn-dark">Editar</a></td>
-            <td><a th:href="'/in/admin-list-tracing/delete/'+${userTracing.userName.username}"  class="btn btn-danger">Eliminar</a></td>
+            <td><a th:href="'/in/admin-list-tracing/edit/'+${userTracing.username.username}"  class="btn btn-dark">Editar</a></td>
+            <td><a th:href="'/in/admin-list-tracing/delete/'+${userTracing.username.username}"  class="btn btn-danger">Eliminar</a></td>
           </tr>
           </tbody>
         </table>

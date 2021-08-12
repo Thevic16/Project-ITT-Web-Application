@@ -109,14 +109,14 @@
             </thead>
             <tbody>
               <tr th:each="userWheelchair : ${userWheelchairList}">
-                <th scope="row" th:text="${userWheelchair.name}"> Antonio</th>
-                <td th:text="${userWheelchair.lastname}"> Marte</td>
+                <th scope="row" th:text="${userWheelchair.username.name}"> Antonio</th>
+                <td th:text="${userWheelchair.username.lastname}"> Marte</td>
                 <td th:text="${userWheelchair.username.username}"> Marciano23</td>
-                <td th:text="${userWheelchair.email}">Marciano23@gmail.com</td>
-                <td th:text="${userWheelchair.phoneNumber}">809-999-9999</td>
+                <td th:text="${userWheelchair.username.email}">Marciano23@gmail.com</td>
+                <td th:text="${userWheelchair.username.phoneNumber}">809-999-9999</td>
 
-                <td><a th:href="'/in/admin-list-wheel/edit/'+${userWheelchair.userName.username}"  class="btn btn-dark">Editar</a></td>
-                <td><a th:href="'/in/admin-list-wheel/delete/'+${userWheelchair.userName.username}"  class="btn btn-danger">Eliminar</a></td>
+                <td><a th:href="'/in/admin-list-wheel/edit/'+${userWheelchair.username.username}"  class="btn btn-dark">Editar</a></td>
+                <td><a th:href="'/in/admin-list-wheel/delete/'+${userWheelchair.username.username}"  class="btn btn-danger">Eliminar</a></td>
 
               </tr>
             </tbody>
