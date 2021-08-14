@@ -23,11 +23,11 @@ edu/pucmm/eict/util/ReminderSchedule.java
  edu.pucmm.eict.util.ReminderSchedule
 edu/pucmm/eict/util/ReminderScheduleUtil.java
  edu.pucmm.eict.util.ReminderScheduleUtil
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main
 edu/pucmm/eict/services/ReminderServices.java
  edu.pucmm.eict.services.ReminderServices
 edu/pucmm/eict/models/Reminder.java
  edu.pucmm.eict.models.Reminder
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
 edu/pucmm/eict/controllers/MainController.java
  edu.pucmm.eict.controllers.MainController

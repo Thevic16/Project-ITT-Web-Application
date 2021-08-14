@@ -2,8 +2,6 @@ package edu.pucmm.eict.models;
 
 
 import edu.pucmm.eict.services.ReminderServices;
-import edu.pucmm.eict.util.ReminderSchedule;
-import edu.pucmm.eict.util.ReminderScheduleUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
