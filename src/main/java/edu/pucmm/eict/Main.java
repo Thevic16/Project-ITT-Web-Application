@@ -1,6 +1,7 @@
 package edu.pucmm.eict;
 
 
+import edu.pucmm.eict.controllers.ApiRestController;
 import edu.pucmm.eict.controllers.MainController;
 import edu.pucmm.eict.services.DatabaseSetupServices;
 import io.javalin.Javalin;
@@ -29,5 +30,6 @@ public class Main {
         JavalinRenderer.register(JavalinThymeleaf.INSTANCE, ".html");
 
         new MainController(app).applyRoutes();
+        new ApiRestController(app).applyRoutes();
     }
 }

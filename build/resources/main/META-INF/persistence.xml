@@ -9,6 +9,9 @@
         <class>edu.pucmm.eict.models.Username</class>
         <class>edu.pucmm.eict.models.UserTracing</class>
         <class>edu.pucmm.eict.models.UserWheelchair</class>
+        <class>edu.pucmm.eict.models.Position</class>
+        <class>edu.pucmm.eict.models.FallEvent</class>
+
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/dbProyectoITT" />
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

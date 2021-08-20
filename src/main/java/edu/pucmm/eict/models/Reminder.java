@@ -3,6 +3,7 @@ package edu.pucmm.eict.models;
 
 import edu.pucmm.eict.services.ReminderServices;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "REMINDER")
-public class Reminder {
+public class Reminder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

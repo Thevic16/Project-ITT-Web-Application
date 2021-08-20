@@ -1,12 +1,13 @@
 package edu.pucmm.eict.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "USERNAME")
-public class Username {
+public class Username implements Serializable {
 
     @Id
     private String username;
