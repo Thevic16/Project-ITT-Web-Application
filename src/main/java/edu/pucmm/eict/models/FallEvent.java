@@ -3,7 +3,7 @@ package edu.pucmm.eict.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 
 
 @Entity
@@ -19,13 +19,15 @@ public class FallEvent implements Serializable {
     @OneToOne
     private Position position;
     private LocalDate dateTime;
+    private LocalTime hour;
 
 
-    public FallEvent(Username username, String photo, Position position, LocalDate dateTime) {
+    public FallEvent(Username username, String photo, Position position, LocalDate dateTime,LocalTime hour) {
         this.username = username;
         this.photo = photo;
         this.position = position;
         this.dateTime = dateTime;
+        this.hour = hour;
     }
 
     public FallEvent() {
@@ -69,5 +71,13 @@ public class FallEvent implements Serializable {
 
     public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public LocalTime getHour() {
+        return hour;
+    }
+
+    public void setHour(LocalTime hour) {
+        this.hour = hour;
     }
 }

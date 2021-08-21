@@ -12,6 +12,7 @@ import io.javalin.Javalin;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -43,7 +44,10 @@ public class ApiRestController extends BaseController {
 
                         LocalDate dateTime = LocalDate.of(Integer.parseInt(tmp.getDateTime().substring(0,4)),Integer.parseInt(tmp.getDateTime().substring(5,7)),Integer.parseInt(tmp.getDateTime().substring(8,10)));
 
-                        FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime);
+                        LocalTime hourLocalTime=  LocalTime.of(Integer.parseInt(tmp.getHour().substring(0,2)),Integer.parseInt(tmp.getHour().substring(3,5)));
+
+
+                        FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime,hourLocalTime);
                         FallEventServices.getInstance().create(fallEvent);
 
                         ctx.json("true");

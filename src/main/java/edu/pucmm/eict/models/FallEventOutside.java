@@ -7,13 +7,15 @@ public class FallEventOutside {
     private Double latitude;
     private Double longitude;
     private String dateTime;
+    private String hour;
 
-    public FallEventOutside(String username, String photo, Double latitude, Double longitude, String dateTime) {
+    public FallEventOutside(String username, String photo, Double latitude, Double longitude, String dateTime,String hour) {
         this.username = username;
         this.photo = photo;
         this.latitude = latitude;
         this.longitude = longitude;
         this.dateTime = dateTime;
+        this.hour = hour;
     }
 
     public FallEventOutside() {
@@ -57,5 +59,13 @@ public class FallEventOutside {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 }
