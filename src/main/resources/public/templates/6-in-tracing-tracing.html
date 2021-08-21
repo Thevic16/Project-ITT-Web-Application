@@ -81,13 +81,13 @@
 
       <div class="testimonial-wrap">
         <div>
-          <h3>Listar eventos</h3>
+          <h3>Listar Eventos Caídas</h3>
         </div>
       </div>
 
       <div class="testimonial-wrap">
         <div>
-          <table class="table">
+          <table class="table table-striped table-responsive">
             <thead>
               <tr>
                 <th scope="col">Usuario silla de ruedas</th>
@@ -96,22 +96,39 @@
                 <th scope="col">Fecha</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Acción 1</th>
-                
               </tr>
             </thead>
+
             <tbody>
-              <tr>
-                <th scope="row">Antonio23</th>
-                <td>Antonio</td>
-                <td>Marte</td>
-                <td>09/07/2021</td>
-                <td>9:50 am</td>
-                <td><button type="button" class="btn btn-dark">Ver más</button></td>
+
+              <tr th:each="fallEvent : ${fallEvents}">
+                <th scope="row" th:text="${fallEvent.username.username}">Antonio23</th>
+                <td th:text="${fallEvent.username.name}">Antonio</td>
+                <td th:text="${fallEvent.username.lastname}">Marte</td>
+                <td th:text="${fallEvent.getDateEndSpanish()}">09/07/2021</td>
+                <td th:text="${fallEvent.hour}">9:50 am</td>
+                <td><button class="btn btn-dark btn-sm" th:onclick="'showMap('+${fallEvent.id}+')'">Ver Mapa</button></td>
+
+
+                <input th:name="${fallEvent.id}" type="hidden" th:value="${fallEvent.position.latitude}">
+                <input th:name="${fallEvent.id}" type="hidden" th:value="${fallEvent.position.longitude}">
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      <div class="testimonial-wrap">
+        <div>
+          <h3>Mapa</h3>
+        </div>
+      </div>
+
+      <div class="testimonial-wrap">
+        <iframe src="https://maps.google.com/maps?q=0, 0&z=15&output=embed" frameborder="0"
+                style="border:0; width: 100%; height: 290px;" allowfullscreen id="map"></iframe>
+      </div>
+
     </section>
 
   </main><!-- End #main -->
@@ -178,6 +195,27 @@
 
   <!-- Template Main JS File -->
   <script src="/util-main-page/js/main.js"></script>
+
+  <script>
+
+
+      function showMap(name) {
+        let arr = document.getElementsByName(name);
+        let latitude = arr[0].value;
+        let longitud = arr[1].value;
+
+        console.log(arr);
+        console.log(latitude);
+        console.log(longitud);
+
+        document.getElementById("map").src = "https://maps.google.com/maps?q=" + latitude + ", " +
+                longitud +
+                "&z=15&output=embed";
+
+      }
+
+  </script>
+
 
 </body>
 

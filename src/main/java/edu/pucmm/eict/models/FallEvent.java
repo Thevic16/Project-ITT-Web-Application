@@ -1,9 +1,16 @@
 package edu.pucmm.eict.models;
 
+import edu.pucmm.eict.services.FallEventServices;
+import edu.pucmm.eict.services.UserTracingServices;
+import edu.pucmm.eict.services.UsernameServices;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -80,4 +87,29 @@ public class FallEvent implements Serializable {
     public void setHour(LocalTime hour) {
         this.hour = hour;
     }
+
+    public String getDateEndSpanish(){
+        return this.dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+
+    // Obtain UserWheelchair of UserTracing and compare they with the existing FallEvent's Users, return a list of the matching ones.
+    public static List<FallEvent> findFallEventsByUsername(String usernameTracing){
+        List<FallEvent> allFallEvents = FallEventServices.getInstance().findAll();
+        List<FallEvent> filteredFallEvents= new ArrayList<FallEvent>();
+
+        //Username usernameTracingOject = UsernameServices.getInstance().find(usernameTracing);
+        UserTracing userTracing = UserTracingServices.getInstance().find(usernameTracing);
+
+        for (UserWheelchair userWheelchair:userTracing.getUsersWheelchair()) {
+            for (FallEvent fallEvent : allFallEvents) {
+                if (fallEvent.username.getUsername().equals(userWheelchair.getUsername().getUsername())) {
+                    filteredFallEvents.add(fallEvent);
+                }
+            }
+        }
+
+        return filteredFallEvents;
+    }
+
 }

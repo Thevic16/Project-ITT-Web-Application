@@ -1,9 +1,6 @@
 package edu.pucmm.eict.controllers;
 
-import edu.pucmm.eict.models.Reminder;
-import edu.pucmm.eict.models.UserTracing;
-import edu.pucmm.eict.models.UserWheelchair;
-import edu.pucmm.eict.models.Username;
+import edu.pucmm.eict.models.*;
 import edu.pucmm.eict.services.ReminderServices;
 import edu.pucmm.eict.services.UserTracingServices;
 import edu.pucmm.eict.services.UserWheelchairServices;
@@ -532,7 +529,15 @@ public class MainController extends BaseController {
 
 
                 get("/tracing-tracing", ctx -> {
-                    ctx.render("/public/templates/6-in-tracing-tracing.html");
+                    Map<String, Object> model = new HashMap<>();
+
+                    String usernameTracing = ctx.sessionAttribute("logged");
+                    List<FallEvent> fallEvents = FallEvent.findFallEventsByUsername(usernameTracing);
+
+                    model.put("fallEvents",fallEvents);
+
+
+                    ctx.render("/public/templates/6-in-tracing-tracing.html",model);
                 });
 
                 get("/logout", ctx -> {
