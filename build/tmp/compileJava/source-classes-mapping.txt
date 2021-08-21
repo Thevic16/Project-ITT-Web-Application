@@ -35,11 +35,11 @@ edu/pucmm/eict/models/UserWheelchair.java
  edu.pucmm.eict.models.UserWheelchair
 edu/pucmm/eict/models/Reminder.java
  edu.pucmm.eict.models.Reminder
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
+edu/pucmm/eict/models/FallEvent.java
+ edu.pucmm.eict.models.FallEvent
 edu/pucmm/eict/services/FallEventServices.java
  edu.pucmm.eict.services.FallEventServices
 edu/pucmm/eict/controllers/ApiRestController.java
  edu.pucmm.eict.controllers.ApiRestController
-edu/pucmm/eict/models/FallEvent.java
- edu.pucmm.eict.models.FallEvent
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main

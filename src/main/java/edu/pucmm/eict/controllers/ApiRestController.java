@@ -30,21 +30,30 @@ public class ApiRestController extends BaseController {
             path("/api", () -> {
 
                 post("/FallEvent", ctx -> {
-                    String body = ctx.body();
-                    FallEventOutside tmp = ctx.bodyAsClass(FallEventOutside.class);
 
-                    System.out.println(body);
+                    try {
+                        String body = ctx.body();
+                        FallEventOutside tmp = ctx.bodyAsClass(FallEventOutside.class);
 
-                    Position position = new Position(tmp.getLatitude(),tmp.getLongitude());
-                    PositionServices.getInstance().create(position);
+                        System.out.println(body);
+                        Position position = new Position(tmp.getLatitude(),tmp.getLongitude());
+                        PositionServices.getInstance().create(position);
+                        Username username = UsernameServices.getInstance().find(tmp.getUsername());
 
-                    Username username = UsernameServices.getInstance().find(tmp.getUsername());
 
+                        LocalDate dateTime = LocalDate.of(Integer.parseInt(tmp.getDateTime().substring(0,4)),Integer.parseInt(tmp.getDateTime().substring(5,7)),Integer.parseInt(tmp.getDateTime().substring(8,10)));
 
-                    LocalDate dateTime = LocalDate.of(Integer.parseInt(tmp.getDateTime().substring(0,4)),Integer.parseInt(tmp.getDateTime().substring(5,7)),Integer.parseInt(tmp.getDateTime().substring(8,10)));
+                        FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime);
+                        FallEventServices.getInstance().create(fallEvent);
 
-                    FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime);
-                    FallEventServices.getInstance().create(fallEvent);
+                        ctx.json("true");
+                    }
+                    catch (Exception e){
+                        System.out.println("Something went wrong with the API-REST. \n");
+                        System.out.println(e);
+
+                        ctx.json("false");
+                    }
 
                 });
 
