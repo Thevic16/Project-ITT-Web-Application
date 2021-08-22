@@ -17,6 +17,7 @@ public class Main {
         Javalin app = Javalin.create(config ->{
             config.addStaticFiles("/public"); //desde la carpeta de resources
             config.enableCorsForAllOrigins();
+            config.requestCacheSize = Long.valueOf(2000000);
         });
 
 

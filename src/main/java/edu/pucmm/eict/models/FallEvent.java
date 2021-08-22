@@ -22,6 +22,7 @@ public class FallEvent implements Serializable {
     private int id;
     @OneToOne
     private Username username;
+    @Column(length = 16777216)
     private String photo;
     @OneToOne
     private Position position;
