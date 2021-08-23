@@ -38,11 +38,11 @@ edu/pucmm/eict/models/FallEvent.java
 edu/pucmm/eict/util/EmailFallEvent.java
  edu.pucmm.eict.util.EmailFallEvent
  edu.pucmm.eict.util.EmailFallEvent$1
-edu/pucmm/eict/controllers/MainController.java
- edu.pucmm.eict.controllers.MainController
-edu/pucmm/eict/services/UserTracingServices.java
- edu.pucmm.eict.services.UserTracingServices
 edu/pucmm/eict/controllers/ApiRestController.java
  edu.pucmm.eict.controllers.ApiRestController
+edu/pucmm/eict/services/UserTracingServices.java
+ edu.pucmm.eict.services.UserTracingServices
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
+edu/pucmm/eict/controllers/MainController.java
+ edu.pucmm.eict.controllers.MainController

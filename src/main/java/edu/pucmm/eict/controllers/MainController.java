@@ -278,6 +278,7 @@ public class MainController extends BaseController {
                         userWheelchair.getUsername().setEmail(email);
                         userWheelchair.getUsername().setPhoneNumber(phone);
 
+                        UsernameServices.getInstance().update(userWheelchair.getUsername());
                         UserWheelchairServices.getInstance().update(userWheelchair);
 
                         ctx.redirect("/in/admin-list-wheel");
@@ -332,10 +333,10 @@ public class MainController extends BaseController {
 
                         userTracing.setUsersWheelchair(userWheelchairList);
 
+                        UsernameServices.getInstance().update(userTracing.getUsername());
                         UserTracingServices.getInstance().update(userTracing);
 
                         ctx.redirect("/in/admin-list-tracing");
-
                     }
 
                 });
