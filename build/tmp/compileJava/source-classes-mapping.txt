@@ -1,10 +1,9 @@
 edu/pucmm/eict/models/Position.java
  edu.pucmm.eict.models.Position
-edu/pucmm/eict/util/EmailUtility.java
- edu.pucmm.eict.util.EmailUtility
- edu.pucmm.eict.util.EmailUtility$1
-edu/pucmm/eict/util/ReminderSchedule.java
- edu.pucmm.eict.util.ReminderSchedule
+edu/pucmm/eict/models/UserWheelchair.java
+ edu.pucmm.eict.models.UserWheelchair
+edu/pucmm/eict/services/FallEventServices.java
+ edu.pucmm.eict.services.FallEventServices
 edu/pucmm/eict/models/Reminder.java
  edu.pucmm.eict.models.Reminder
 edu/pucmm/eict/services/DatabaseOrmHandler.java
@@ -21,25 +20,29 @@ edu/pucmm/eict/services/UsernameServices.java
  edu.pucmm.eict.services.UsernameServices
 edu/pucmm/eict/util/BaseController.java
  edu.pucmm.eict.util.BaseController
-edu/pucmm/eict/models/UserTracing.java
- edu.pucmm.eict.models.UserTracing
-edu/pucmm/eict/services/UserTracingServices.java
- edu.pucmm.eict.services.UserTracingServices
-edu/pucmm/eict/services/PositionServices.java
- edu.pucmm.eict.services.PositionServices
 edu/pucmm/eict/services/DatabaseSetupServices.java
  edu.pucmm.eict.services.DatabaseSetupServices
 edu/pucmm/eict/util/ReminderScheduleUtil.java
  edu.pucmm.eict.util.ReminderScheduleUtil
-edu/pucmm/eict/models/UserWheelchair.java
- edu.pucmm.eict.models.UserWheelchair
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
-edu/pucmm/eict/services/FallEventServices.java
- edu.pucmm.eict.services.FallEventServices
-edu/pucmm/eict/controllers/ApiRestController.java
- edu.pucmm.eict.controllers.ApiRestController
+edu/pucmm/eict/services/PositionServices.java
+ edu.pucmm.eict.services.PositionServices
+edu/pucmm/eict/util/EmailUtility.java
+ edu.pucmm.eict.util.EmailUtility
+ edu.pucmm.eict.util.EmailUtility$1
+edu/pucmm/eict/util/ReminderSchedule.java
+ edu.pucmm.eict.util.ReminderSchedule
+edu/pucmm/eict/models/UserTracing.java
+ edu.pucmm.eict.models.UserTracing
 edu/pucmm/eict/models/FallEvent.java
  edu.pucmm.eict.models.FallEvent
+edu/pucmm/eict/util/EmailFallEvent.java
+ edu.pucmm.eict.util.EmailFallEvent
+ edu.pucmm.eict.util.EmailFallEvent$1
 edu/pucmm/eict/controllers/MainController.java
  edu.pucmm.eict.controllers.MainController
+edu/pucmm/eict/services/UserTracingServices.java
+ edu.pucmm.eict.services.UserTracingServices
+edu/pucmm/eict/controllers/ApiRestController.java
+ edu.pucmm.eict.controllers.ApiRestController
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main

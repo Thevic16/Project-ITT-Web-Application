@@ -91,6 +91,7 @@ public class EmailUtility {
             // Content
             message.setContent( content, "text/plain; charset=utf-8" );
 
+
             Transport.send( message );
 
         }

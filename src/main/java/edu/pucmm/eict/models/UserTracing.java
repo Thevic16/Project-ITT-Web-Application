@@ -1,6 +1,9 @@
 package edu.pucmm.eict.models;
 
+import edu.pucmm.eict.services.UserTracingServices;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -51,6 +54,21 @@ public class UserTracing implements Serializable {
         }
 
         return listWheelchair;
+    }
+
+    public static List<UserTracing> getListUsersTracingByUserWheelchair(Username usernameWheelchair){
+        List<UserTracing> filteredList = new ArrayList<UserTracing>();
+        List<UserTracing> allList = UserTracingServices.getInstance().findAll();
+
+        for (UserTracing userTracing:allList) {
+            for (UserWheelchair userWheelchair: userTracing.getUsersWheelchair()) {
+                if(userWheelchair.getUsername().getUsername().equals(usernameWheelchair.getUsername())){
+                    filteredList.add(userTracing);
+                }
+            }
+        }
+
+        return filteredList;
     }
 
 }

@@ -1,13 +1,11 @@
 package edu.pucmm.eict.controllers;
 
-import edu.pucmm.eict.models.FallEvent;
-import edu.pucmm.eict.models.FallEventOutside;
-import edu.pucmm.eict.models.Position;
-import edu.pucmm.eict.models.Username;
+import edu.pucmm.eict.models.*;
 import edu.pucmm.eict.services.FallEventServices;
 import edu.pucmm.eict.services.PositionServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
+import edu.pucmm.eict.util.EmailFallEvent;
 import io.javalin.Javalin;
 
 import java.time.LocalDate;
@@ -49,6 +47,19 @@ public class ApiRestController extends BaseController {
 
                         FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime,hourLocalTime);
                         FallEventServices.getInstance().create(fallEvent);
+
+                        //Send email.
+
+
+                        for (UserTracing userTracing:UserTracing.getListUsersTracingByUserWheelchair(username)) {
+                            String to = userTracing.getUsername().getEmail();
+                            String subject = "¡Se ha detectado una posible caída!";
+                            String content = "Usuario:"+username.getUsername()+" <br> Nombre:"+username.getName()+" <br> Apellido:"+username.getLastname();
+                            String photo = fallEvent.getPhoto().substring(23);
+
+                            EmailFallEvent emailFallEvent = new EmailFallEvent();
+                            emailFallEvent.sendMail(to,subject,content,photo,fallEvent.getPosition().getLatitude(),fallEvent.getPosition().getLongitude());
+                        }
 
                         ctx.json("true");
                     }
