@@ -6,8 +6,11 @@ import edu.pucmm.eict.services.PositionServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import edu.pucmm.eict.util.EmailFallEvent;
+import edu.pucmm.eict.util.PushNotification;
 import io.javalin.Javalin;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -59,6 +62,16 @@ public class ApiRestController extends BaseController {
 
                             EmailFallEvent emailFallEvent = new EmailFallEvent();
                             emailFallEvent.sendMail(to,subject,content,photo,fallEvent.getPosition().getLatitude(),fallEvent.getPosition().getLongitude());
+
+                            try {
+                                PushNotification.sendPushNotification("¡Se ha detectado una posible caída!","Información: \n Usuario:"+username.getUsername()+" \n Nombre:"+username.getName()+" \n  Apellido:"+username.getLastname());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (URISyntaxException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
 
                         ctx.json("true");

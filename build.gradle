@@ -37,6 +37,9 @@ dependencies {
 
     //JSON
     compile "com.fasterxml.jackson.core:jackson-databind:2.10.1"
+
+    //Pusher Beams Java Server SDK
+    implementation 'com.pusher:push-notifications-server-java:1.1.1'
 }
 
 test {

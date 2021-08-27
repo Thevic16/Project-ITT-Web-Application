@@ -3,6 +3,8 @@ package edu.pucmm.eict.util;
 import edu.pucmm.eict.models.Reminder;
 import edu.pucmm.eict.models.Username;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
@@ -54,6 +56,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.sunday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;
@@ -62,6 +75,16 @@ public class ReminderSchedule extends TimerTask{
                 if(this.monday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 break;
@@ -70,6 +93,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.tuesday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;
@@ -78,6 +112,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.wednesday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;
@@ -86,6 +131,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.thursday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;
@@ -94,6 +150,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.friday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;
@@ -102,6 +169,17 @@ public class ReminderSchedule extends TimerTask{
                 if(this.saturday){
                     EmailUtility emailUtility = new EmailUtility();
                     emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+
+                    try {
+                        PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
                 break;

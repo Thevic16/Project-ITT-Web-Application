@@ -7,7 +7,6 @@ import edu.pucmm.eict.services.UserWheelchairServices;
 import edu.pucmm.eict.services.UsernameServices;
 import edu.pucmm.eict.util.BaseController;
 import edu.pucmm.eict.util.EmailUtility;
-import edu.pucmm.eict.util.ReminderSchedule;
 import edu.pucmm.eict.util.ReminderScheduleUtil;
 import io.javalin.Javalin;
 
