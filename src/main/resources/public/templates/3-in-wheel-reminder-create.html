@@ -90,8 +90,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Descripción</span>
             </div>
-            <input th:if="${!edit}" type="text" class="form-control" aria-label="With textarea" name="desciption">
-            <input th:if="${edit}" th:value="${reminder.desciption}" type="text"  class="form-control" aria-label="With textarea" name="desciption"></input>
+            <input th:if="${!edit}" type="text" class="form-control" aria-label="With textarea" name="desciption" required>
+            <input th:if="${edit}" th:value="${reminder.desciption}" type="text"  class="form-control" aria-label="With textarea" name="desciption" required>
 
           </div>
         </div>
@@ -226,7 +226,7 @@
 
           <button class="btn btn-dark" th:if="${!edit}" >Crear</button>
           <button class="btn btn-dark" th:if="${edit}">Editar</button>
-          <a href="/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
+          <a href="/in/wheel-reminder-create" class="btn btn-dark">Cancelar</a>
 
        </form>
 

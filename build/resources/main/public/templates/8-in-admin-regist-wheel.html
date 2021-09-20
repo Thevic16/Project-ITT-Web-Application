@@ -144,9 +144,9 @@
           <input th:if="${edit}"  th:value="${userWheelchair.username.phoneNumber}" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-999-9999"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
         </div>
 
-          <button th:if="${edit}" id="bottonCreate" class="btn btn-dark">Editar</button>
-          <button th:if="${!edit}" id="bottonCreate" class="btn btn-dark">Enviar</button>
-          <a href="/in/admin-list" class="btn btn-dark">Cancelar</a>
+          <button th:if="${edit}" id="button" class="btn btn-dark" >Editar</button>
+          <button th:if="${!edit}" id="button" class="btn btn-dark" >Enviar</button>
+          <a href="/in/admin-list-wheel" class="btn btn-dark">Cancelar</a>
 
       </form>
 
@@ -228,20 +228,20 @@
       var pw2 = document.getElementById("confirm-password").value;
 
 
-      if(pw1 != pw2) {
+      if (pw1 != pw2) {
         alert("Las contraseñas no coinciden.")
         return false;
       }
 
 
       //minimum password length validation
-      if(pw1.length < 8) {
+      if (pw1.length < 8) {
         alert("La contraseña debe ser de como mínimo 8 caracteres")
         return false;
       }
 
-
     }
+
   </script>
 
 </body>
