@@ -160,6 +160,9 @@ public class MainController extends BaseController {
                     ctx.redirect("/login");
                 }
             }
+            else{
+                ctx.redirect("/login");
+            }
 
         });
 
