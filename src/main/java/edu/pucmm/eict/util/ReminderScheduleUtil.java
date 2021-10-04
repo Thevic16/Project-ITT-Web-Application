@@ -21,7 +21,9 @@ public class ReminderScheduleUtil {
 
         Calendar c = Calendar.getInstance();
         c.setTime(hourReminder);
-        System.out.println(c.get(Calendar.DAY_OF_WEEK));
+
+        //System.out.println(c.get(Calendar.DAY_OF_WEEK));
+
         //If the current hour is after reminder hour we put the reminder to start the next day.
         /*
         if (c.get(Calendar.HOUR_OF_DAY) >= reminder.getHour().getHour()) {
@@ -34,8 +36,8 @@ public class ReminderScheduleUtil {
         c.set(Calendar.SECOND, hour.getSecond());
 
         hourReminder = c.getTime();
-        System.out.println(hourReminder);
-        System.out.println(c.get(Calendar.DAY_OF_WEEK));
+        //System.out.println(hourReminder);
+        //System.out.println(c.get(Calendar.DAY_OF_WEEK));
 
         // The code is executed every 24 hours (once a day)
         int timeRepetition = 86400000;

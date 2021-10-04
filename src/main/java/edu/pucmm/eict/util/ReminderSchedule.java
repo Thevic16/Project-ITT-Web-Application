@@ -1,6 +1,5 @@
 package edu.pucmm.eict.util;
 
-import edu.pucmm.eict.models.Reminder;
 import edu.pucmm.eict.models.Username;
 
 import java.io.IOException;
@@ -8,8 +7,6 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
 import java.util.TimerTask;
 
 public class ReminderSchedule extends TimerTask{
@@ -50,6 +47,13 @@ public class ReminderSchedule extends TimerTask{
     @Override
     public void run() {
         Calendar currentDay = Calendar.getInstance();
+
+        if(dateEnd != null){
+            if(LocalDate.now().isAfter(dateEnd)){
+                this.cancel();
+                return;
+            }
+        }
 
         switch (currentDay.get(Calendar.DAY_OF_WEEK)) {
             case 1:
