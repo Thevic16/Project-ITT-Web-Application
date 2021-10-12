@@ -38,8 +38,10 @@ public class Reminder implements Serializable {
 
     private Boolean always;
 
+    private Boolean sendEmail;
 
-    public Reminder(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always) {
+
+    public Reminder(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always, Boolean sendEmail) {
         this.desciption = desciption;
         this.monday = monday;
         this.tuesday = tuesday;
@@ -52,6 +54,7 @@ public class Reminder implements Serializable {
         this.dateEnd = dateEnd;
         this.username = username;
         this.always = always;
+        this.sendEmail = sendEmail;
     }
 
     public Reminder() {
@@ -161,6 +164,14 @@ public class Reminder implements Serializable {
 
     public void setAlways(Boolean always) {
         this.always = always;
+    }
+
+    public Boolean getSendEmail() {
+        return sendEmail;
+    }
+
+    public void setSendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
     }
 
     public static List<Reminder> findRemandersByUsername(String username){

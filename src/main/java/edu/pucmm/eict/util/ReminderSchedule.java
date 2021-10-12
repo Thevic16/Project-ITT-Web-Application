@@ -28,8 +28,10 @@ public class ReminderSchedule extends TimerTask{
 
     private Boolean always;
 
+    private Boolean sendEmail;
 
-    public ReminderSchedule(String desciption,Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd,Username username, Boolean always) {
+
+    public ReminderSchedule(String desciption,Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd,Username username, Boolean always, Boolean sendEmail) {
         this.desciption = desciption;
         this.monday = monday;
         this.tuesday = tuesday;
@@ -42,6 +44,7 @@ public class ReminderSchedule extends TimerTask{
         this.dateEnd = dateEnd;
         this.username = username;
         this.always = always;
+        this.sendEmail = sendEmail;
     }
 
     @Override
@@ -58,8 +61,10 @@ public class ReminderSchedule extends TimerTask{
         switch (currentDay.get(Calendar.DAY_OF_WEEK)) {
             case 1:
                 if(this.sunday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -77,8 +82,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 2:
                 if(this.monday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -95,8 +102,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 3:
                 if(this.tuesday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -114,8 +123,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 4:
                 if(this.wednesday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -133,8 +144,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 5:
                 if(this.thursday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -152,8 +165,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 6:
                 if(this.friday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");
@@ -171,8 +186,10 @@ public class ReminderSchedule extends TimerTask{
 
             case 7:
                 if(this.saturday){
-                    EmailUtility emailUtility = new EmailUtility();
-                    emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    if(this.sendEmail){
+                        EmailUtility emailUtility = new EmailUtility();
+                        emailUtility.sendMail( this.username.getEmail(), "Recordatorio "+this.desciption+".", this.desciption);
+                    }
 
                     try {
                         PushNotification.sendPushNotification("Recordatario","Recordatorio "+this.desciption+".");

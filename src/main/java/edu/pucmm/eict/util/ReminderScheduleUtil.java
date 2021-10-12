@@ -16,7 +16,7 @@ public class ReminderScheduleUtil {
         this.timer = new Timer();
     }
 
-    public void setReminderSchedule(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always){
+    public void setReminderSchedule(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always , Boolean sendEmail){
         Date hourReminder = new Date(System.currentTimeMillis());
 
         Calendar c = Calendar.getInstance();
@@ -43,7 +43,7 @@ public class ReminderScheduleUtil {
         int timeRepetition = 86400000;
 
         // Schedule the timer.
-        this.timer.schedule(new ReminderSchedule(desciption,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hour,dateEnd,username,always),hourReminder,timeRepetition);
+        this.timer.schedule(new ReminderSchedule(desciption,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hour,dateEnd,username,always,sendEmail),hourReminder,timeRepetition);
     }
 
     public void cancelReminderSchedule(){

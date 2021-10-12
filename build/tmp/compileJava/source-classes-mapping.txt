@@ -4,12 +4,13 @@ edu/pucmm/eict/models/UserWheelchair.java
  edu.pucmm.eict.models.UserWheelchair
 edu/pucmm/eict/services/FallEventServices.java
  edu.pucmm.eict.services.FallEventServices
-edu/pucmm/eict/models/Reminder.java
- edu.pucmm.eict.models.Reminder
+edu/pucmm/eict/services/UserTracingServices.java
+ edu.pucmm.eict.services.UserTracingServices
 edu/pucmm/eict/services/DatabaseOrmHandler.java
  edu.pucmm.eict.services.DatabaseOrmHandler
-edu/pucmm/eict/services/ReminderServices.java
- edu.pucmm.eict.services.ReminderServices
+edu/pucmm/eict/util/EmailFallEvent.java
+ edu.pucmm.eict.util.EmailFallEvent
+ edu.pucmm.eict.util.EmailFallEvent$1
 edu/pucmm/eict/services/UserWheelchairServices.java
  edu.pucmm.eict.services.UserWheelchairServices
 edu/pucmm/eict/models/FallEventOutside.java
@@ -35,15 +36,14 @@ edu/pucmm/eict/models/UserTracing.java
  edu.pucmm.eict.models.UserTracing
 edu/pucmm/eict/models/FallEvent.java
  edu.pucmm.eict.models.FallEvent
-edu/pucmm/eict/util/EmailFallEvent.java
- edu.pucmm.eict.util.EmailFallEvent
- edu.pucmm.eict.util.EmailFallEvent$1
-edu/pucmm/eict/services/UserTracingServices.java
- edu.pucmm.eict.services.UserTracingServices
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
 edu/pucmm/eict/controllers/MainController.java
  edu.pucmm.eict.controllers.MainController
+edu/pucmm/eict/services/ReminderServices.java
+ edu.pucmm.eict.services.ReminderServices
+edu/pucmm/eict/models/Reminder.java
+ edu.pucmm.eict.models.Reminder
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main
 edu/pucmm/eict/util/ReminderSchedule.java
  edu.pucmm.eict.util.ReminderSchedule
 edu/pucmm/eict/util/ReminderScheduleUtil.java

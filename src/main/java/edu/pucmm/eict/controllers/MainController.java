@@ -363,6 +363,7 @@ public class MainController extends BaseController {
                     String hour = ctx.formParam("hour");
                     String always = ctx.formParam("always");
                     String dateEnd = ctx.formParam("dateEnd");
+                    String sendEmail = ctx.formParam("sendEmail");
 
                     Boolean mondayBoolean;
                     Boolean tuesdayBoolean;
@@ -372,6 +373,7 @@ public class MainController extends BaseController {
                     Boolean saturdayBoolean;
                     Boolean sundayBoolean;
                     Boolean alwaysBoolean;
+                    Boolean sendEmailBoolean;
 
                     if(monday != null){
                         mondayBoolean = true;
@@ -429,6 +431,13 @@ public class MainController extends BaseController {
                         alwaysBoolean = false;
                     }
 
+                    if(sendEmail != null){
+                        sendEmailBoolean = true;
+                    }
+                    else {
+                        sendEmailBoolean = false;
+                    }
+
 
                     LocalTime hourLocalTime=  LocalTime.of(Integer.parseInt(hour.substring(0,2)),Integer.parseInt(hour.substring(3,5)));
 
@@ -444,12 +453,12 @@ public class MainController extends BaseController {
 
                         String username = ctx.sessionAttribute("logged");
 
-                        Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean);
+                        Reminder reminder = new Reminder(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean,sendEmailBoolean);
                         ReminderServices.getInstance().create(reminder);
 
                         ReminderScheduleUtil reminderScheduleUtil = new ReminderScheduleUtil();
 
-                        reminderScheduleUtil.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean);
+                        reminderScheduleUtil.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,UsernameServices.getInstance().find(username),alwaysBoolean,sendEmailBoolean);
 
                         this.ReminderScheduleUtilMap.put(reminder.getId(),reminderScheduleUtil);
 
@@ -471,6 +480,7 @@ public class MainController extends BaseController {
                         reminder.setHour(hourLocalTime);
                         reminder.setDateEnd(dateEndLocalDate);
                         reminder.setAlways(alwaysBoolean);
+                        reminder.setSendEmail(sendEmailBoolean);
 
                         ReminderServices.getInstance().update(reminder);
 
@@ -480,7 +490,7 @@ public class MainController extends BaseController {
 
                         ReminderScheduleUtil reminderScheduleUtilnew = new ReminderScheduleUtil();
                         this.ReminderScheduleUtilMap.put(id,reminderScheduleUtilnew);
-                        reminderScheduleUtilnew.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,reminder.getUsername(),alwaysBoolean);
+                        reminderScheduleUtilnew.setReminderSchedule(desciption,mondayBoolean,tuesdayBoolean,wednesdayBoolean,thursdayBoolean,fridayBoolean,saturdayBoolean,sundayBoolean,hourLocalTime,dateEndLocalDate,reminder.getUsername(),alwaysBoolean,sendEmailBoolean);
 
 
                         ctx.redirect("/in/wheel-reminder-list");

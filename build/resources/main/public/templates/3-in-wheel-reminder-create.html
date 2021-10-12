@@ -197,6 +197,19 @@
 
         <div>
           <div>
+            <h3>¿Enviar correo?</h3>
+          </div>
+        </div>
+
+        <div>
+          <input th:if="${!edit}" type="checkbox" id="sendEmail" name="sendEmail" onclick="checkAlways()">
+          <input th:if="${edit} and ${!reminder.sendEmail}" type="checkbox" id="sendEmail" name="sendEmail" onclick="checkAlways()">
+          <input th:if="${edit} and ${reminder.sendEmail}" type="checkbox" id="sendEmail" name="sendEmail" onclick="checkAlways()" checked>
+        </div>
+
+
+        <div>
+          <div>
             <h3>¿Siempre?</h3>
           </div>
         </div>
@@ -312,7 +325,7 @@
         }
 
       }
-      
+
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1; //January is 0!
