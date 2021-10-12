@@ -58,8 +58,6 @@ public class ApiRestController extends BaseController {
                             FallEventServices.getInstance().create(fallEvent);
 
                             //Send email.
-
-
                             for (UserTracing userTracing : UserTracing.getListUsersTracingByUserWheelchair(username)) {
                                 String to = userTracing.getUsername().getEmail();
                                 String subject = "¡Se ha detectado una posible caída!";
