@@ -13,8 +13,8 @@ edu/pucmm/eict/util/EmailFallEvent.java
  edu.pucmm.eict.util.EmailFallEvent$1
 edu/pucmm/eict/services/UserWheelchairServices.java
  edu.pucmm.eict.services.UserWheelchairServices
-edu/pucmm/eict/models/FallEventOutside.java
- edu.pucmm.eict.models.FallEventOutside
+edu/pucmm/eict/util/ReminderScheduleUtil.java
+ edu.pucmm.eict.util.ReminderScheduleUtil
 edu/pucmm/eict/models/Username.java
  edu.pucmm.eict.models.Username
 edu/pucmm/eict/services/UsernameServices.java
@@ -23,8 +23,8 @@ edu/pucmm/eict/util/BaseController.java
  edu.pucmm.eict.util.BaseController
 edu/pucmm/eict/services/DatabaseSetupServices.java
  edu.pucmm.eict.services.DatabaseSetupServices
-edu/pucmm/eict/controllers/ApiRestController.java
- edu.pucmm.eict.controllers.ApiRestController
+edu/pucmm/eict/util/ReminderSchedule.java
+ edu.pucmm.eict.util.ReminderSchedule
 edu/pucmm/eict/services/PositionServices.java
  edu.pucmm.eict.services.PositionServices
 edu/pucmm/eict/util/EmailUtility.java
@@ -42,9 +42,9 @@ edu/pucmm/eict/services/ReminderServices.java
  edu.pucmm.eict.services.ReminderServices
 edu/pucmm/eict/models/Reminder.java
  edu.pucmm.eict.models.Reminder
+edu/pucmm/eict/models/FallEventOutside.java
+ edu.pucmm.eict.models.FallEventOutside
+edu/pucmm/eict/controllers/ApiRestController.java
+ edu.pucmm.eict.controllers.ApiRestController
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
-edu/pucmm/eict/util/ReminderSchedule.java
- edu.pucmm.eict.util.ReminderSchedule
-edu/pucmm/eict/util/ReminderScheduleUtil.java
- edu.pucmm.eict.util.ReminderScheduleUtil

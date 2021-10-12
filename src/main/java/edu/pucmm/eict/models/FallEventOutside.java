@@ -3,14 +3,16 @@ package edu.pucmm.eict.models;
 
 public class FallEventOutside {
     private String username;
+    private String password;
     private String photo;
     private Double latitude;
     private Double longitude;
     private String dateTime;
     private String hour;
 
-    public FallEventOutside(String username, String photo, Double latitude, Double longitude, String dateTime,String hour) {
+    public FallEventOutside(String username,String password, String photo, Double latitude, Double longitude, String dateTime,String hour) {
         this.username = username;
+        this.password = password;
         this.photo = photo;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -27,6 +29,14 @@ public class FallEventOutside {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoto() {

@@ -37,44 +37,54 @@ public class ApiRestController extends BaseController {
                         String body = ctx.body();
                         FallEventOutside tmp = ctx.bodyAsClass(FallEventOutside.class);
 
-                        System.out.println(body);
-                        Position position = new Position(tmp.getLatitude(),tmp.getLongitude());
-                        PositionServices.getInstance().create(position);
-                        Username username = UsernameServices.getInstance().find(tmp.getUsername());
+                        //verify username and password
+                        Username usernameObject = UsernameServices.getInstance().find(tmp.getUsername());
+
+                        // Condition to verify a correct username, password and rol in the application.
+                        if (usernameObject.getUsername().equalsIgnoreCase(tmp.getUsername()) && usernameObject.getPassword().equalsIgnoreCase(tmp.getPassword()) && usernameObject.getIswheelchair()) {
+
+                            System.out.println(body);
+                            Position position = new Position(tmp.getLatitude(), tmp.getLongitude());
+                            PositionServices.getInstance().create(position);
+                            Username username = UsernameServices.getInstance().find(tmp.getUsername());
 
 
-                        LocalDate dateTime = LocalDate.of(Integer.parseInt(tmp.getDateTime().substring(0,4)),Integer.parseInt(tmp.getDateTime().substring(5,7)),Integer.parseInt(tmp.getDateTime().substring(8,10)));
+                            LocalDate dateTime = LocalDate.of(Integer.parseInt(tmp.getDateTime().substring(0, 4)), Integer.parseInt(tmp.getDateTime().substring(5, 7)), Integer.parseInt(tmp.getDateTime().substring(8, 10)));
 
-                        LocalTime hourLocalTime=  LocalTime.of(Integer.parseInt(tmp.getHour().substring(0,2)),Integer.parseInt(tmp.getHour().substring(3,5)));
-
-
-                        FallEvent fallEvent = new FallEvent(username,tmp.getPhoto(),position,dateTime,hourLocalTime);
-                        FallEventServices.getInstance().create(fallEvent);
-
-                        //Send email.
+                            LocalTime hourLocalTime = LocalTime.of(Integer.parseInt(tmp.getHour().substring(0, 2)), Integer.parseInt(tmp.getHour().substring(3, 5)));
 
 
-                        for (UserTracing userTracing:UserTracing.getListUsersTracingByUserWheelchair(username)) {
-                            String to = userTracing.getUsername().getEmail();
-                            String subject = "¡Se ha detectado una posible caída!";
-                            String content = "Usuario:"+username.getUsername()+" <br> Nombre:"+username.getName()+" <br> Apellido:"+username.getLastname();
-                            String photo = fallEvent.getPhoto().substring(23);
+                            FallEvent fallEvent = new FallEvent(username, tmp.getPhoto(), position, dateTime, hourLocalTime);
+                            FallEventServices.getInstance().create(fallEvent);
 
-                            EmailFallEvent emailFallEvent = new EmailFallEvent();
-                            emailFallEvent.sendMail(to,subject,content,photo,fallEvent.getPosition().getLatitude(),fallEvent.getPosition().getLongitude());
+                            //Send email.
 
-                            try {
-                                PushNotification.sendPushNotification("¡Se ha detectado una posible caída!","Información: \n Usuario:"+username.getUsername()+" \n Nombre:"+username.getName()+" \n  Apellido:"+username.getLastname());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (URISyntaxException e) {
-                                e.printStackTrace();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+
+                            for (UserTracing userTracing : UserTracing.getListUsersTracingByUserWheelchair(username)) {
+                                String to = userTracing.getUsername().getEmail();
+                                String subject = "¡Se ha detectado una posible caída!";
+                                String content = "Usuario:" + username.getUsername() + " <br> Nombre:" + username.getName() + " <br> Apellido:" + username.getLastname();
+                                String photo = fallEvent.getPhoto().substring(23);
+
+                                EmailFallEvent emailFallEvent = new EmailFallEvent();
+                                emailFallEvent.sendMail(to, subject, content, photo, fallEvent.getPosition().getLatitude(), fallEvent.getPosition().getLongitude());
+
+                                try {
+                                    PushNotification.sendPushNotification("¡Se ha detectado una posible caída!", "Información: \n Usuario:" + username.getUsername() + " \n Nombre:" + username.getName() + " \n  Apellido:" + username.getLastname());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (URISyntaxException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
 
-                        ctx.json("true");
+                            ctx.json("true");
+                        }
+                        else {
+                            ctx.json("false");
+                        }
                     }
                     catch (Exception e){
                         System.out.println("Something went wrong with the API-REST. \n");
