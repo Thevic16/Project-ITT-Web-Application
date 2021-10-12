@@ -35,6 +35,7 @@ public class ApiRestController extends BaseController {
 
                     try {
                         String body = ctx.body();
+                        System.out.println(body);
                         FallEventOutside tmp = ctx.bodyAsClass(FallEventOutside.class);
 
                         //verify username and password
@@ -43,7 +44,6 @@ public class ApiRestController extends BaseController {
                         // Condition to verify a correct username, password and rol in the application.
                         if (usernameObject.getUsername().equalsIgnoreCase(tmp.getUsername()) && usernameObject.getPassword().equalsIgnoreCase(tmp.getPassword()) && usernameObject.getIswheelchair()) {
 
-                            System.out.println(body);
                             Position position = new Position(tmp.getLatitude(), tmp.getLongitude());
                             PositionServices.getInstance().create(position);
                             Username username = UsernameServices.getInstance().find(tmp.getUsername());
@@ -91,6 +91,10 @@ public class ApiRestController extends BaseController {
                         ctx.json("false");
                     }
 
+                });
+
+                post("/prueba", ctx -> {
+                    ctx.json("true");
                 });
 
             });
