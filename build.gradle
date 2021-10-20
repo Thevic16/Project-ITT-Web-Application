@@ -41,6 +41,7 @@ dependencies {
 
     //Pusher Beams Java Server SDK
     implementation 'com.pusher:push-notifications-server-java:1.1.1'
+
 }
 
 test {
