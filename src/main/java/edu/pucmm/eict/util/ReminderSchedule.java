@@ -51,6 +51,7 @@ public class ReminderSchedule extends TimerTask{
     public void run() {
         Calendar currentDay = Calendar.getInstance();
 
+        // Return if the dateEnd has passed.
         if(dateEnd != null){
             if(LocalDate.now().isAfter(dateEnd)){
                 this.cancel();

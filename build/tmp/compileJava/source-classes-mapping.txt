@@ -3,8 +3,8 @@ edu/pucmm/eict/services/FallEventServices.java
 edu/pucmm/eict/util/EmailUtility.java
  edu.pucmm.eict.util.EmailUtility
  edu.pucmm.eict.util.EmailUtility$1
-edu/pucmm/eict/util/ReminderSchedule.java
- edu.pucmm.eict.util.ReminderSchedule
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main
 edu/pucmm/eict/services/PositionServices.java
  edu.pucmm.eict.services.PositionServices
 edu/pucmm/eict/models/Position.java
@@ -15,8 +15,8 @@ edu/pucmm/eict/services/UserWheelchairServices.java
  edu.pucmm.eict.services.UserWheelchairServices
 edu/pucmm/eict/util/PushNotification.java
  edu.pucmm.eict.util.PushNotification
-edu/pucmm/eict/controllers/MainController.java
- edu.pucmm.eict.controllers.MainController
+edu/pucmm/eict/util/ReminderSchedule.java
+ edu.pucmm.eict.util.ReminderSchedule
 edu/pucmm/eict/models/Username.java
  edu.pucmm.eict.models.Username
 edu/pucmm/eict/services/UsernameServices.java
@@ -34,8 +34,8 @@ edu/pucmm/eict/models/FallEvent.java
  edu.pucmm.eict.models.FallEvent
 edu/pucmm/eict/services/DatabaseSetupServices.java
  edu.pucmm.eict.services.DatabaseSetupServices
-edu/pucmm/eict/util/ReminderScheduleUtil.java
- edu.pucmm.eict.util.ReminderScheduleUtil
+edu/pucmm/eict/controllers/ApiRestController.java
+ edu.pucmm.eict.controllers.ApiRestController
 edu/pucmm/eict/services/UserTracingServices.java
  edu.pucmm.eict.services.UserTracingServices
 edu/pucmm/eict/models/Reminder.java
@@ -44,7 +44,7 @@ edu/pucmm/eict/services/DatabaseOrmHandler.java
  edu.pucmm.eict.services.DatabaseOrmHandler
 edu/pucmm/eict/models/UserWheelchair.java
  edu.pucmm.eict.models.UserWheelchair
-edu/pucmm/eict/controllers/ApiRestController.java
- edu.pucmm.eict.controllers.ApiRestController
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
+edu/pucmm/eict/util/ReminderScheduleUtil.java
+ edu.pucmm.eict.util.ReminderScheduleUtil
+edu/pucmm/eict/controllers/MainController.java
+ edu.pucmm.eict.controllers.MainController
