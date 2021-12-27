@@ -42,6 +42,8 @@ dependencies {
     //Pusher Beams Java Server SDK
     implementation 'com.pusher:push-notifications-server-java:1.1.1'
 
+    // https://mvnrepository.com/artifact/org.jasypt/jasypt
+    implementation group: 'org.jasypt', name: 'jasypt', version: '1.9.3'
 }
 
 test {

@@ -9,6 +9,7 @@ import edu.pucmm.eict.util.BaseController;
 import edu.pucmm.eict.util.EmailUtility;
 import edu.pucmm.eict.util.ReminderScheduleUtil;
 import io.javalin.Javalin;
+import org.jasypt.util.text.AES256TextEncryptor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -133,7 +134,11 @@ public class MainController extends BaseController {
             Username usernameObject = UsernameServices.getInstance().find(username);
 
             if(usernameObject != null){
-                if(usernameObject.getUsername().equalsIgnoreCase(username) && usernameObject.getPassword().equalsIgnoreCase(password)){
+                // Decrupting password from the db.
+                AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+                textEncryptor.setPassword("myEncryptionPassword");
+
+                if(usernameObject.getUsername().equalsIgnoreCase(username) && textEncryptor.decrypt(usernameObject.getPassword()).equalsIgnoreCase(password)){
 
                     if(usernameObject.getIswheelchair()){
                         ctx.redirect("/in/wheel-reminder-create");
@@ -262,6 +267,11 @@ public class MainController extends BaseController {
 
                     String edit = ctx.pathParam("edit");
 
+                    // Encrypting password.
+                    AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+                    textEncryptor.setPassword("myEncryptionPassword");
+                    password = textEncryptor.encrypt(password);
+
                     if(edit.equalsIgnoreCase("false")){
                         Username usernameObject = new Username(username,password,true,name,lastname,email,phone);
                         UsernameServices.getInstance().create(usernameObject);
@@ -313,6 +323,12 @@ public class MainController extends BaseController {
                         UserWheelchair userWheelchair = UserWheelchairServices.getInstance().find(usernameWheelchair);
                         userWheelchairList.add(userWheelchair);
                     }
+
+                    // Encrypting password.
+                    AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+                    textEncryptor.setPassword("myEncryptionPassword");
+                    password = textEncryptor.encrypt(password);
+
 
                     String edit = ctx.pathParam("edit");
                     if(edit.equalsIgnoreCase("false")){
