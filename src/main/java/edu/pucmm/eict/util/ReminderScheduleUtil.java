@@ -16,7 +16,7 @@ public class ReminderScheduleUtil {
         this.timer = new Timer();
     }
 
-    public void setReminderSchedule(String desciption, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always , Boolean sendEmail){
+    public void setReminderSchedule(String description, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always , Boolean sendEmail){
         //Date hourReminder = new Date(System.currentTimeMillis());
 
         Calendar c = Calendar.getInstance();
@@ -32,19 +32,21 @@ public class ReminderScheduleUtil {
 
         //System.out.println(c.get(Calendar.DAY_OF_WEEK));
 
-        //System.out.println(hourReminder);
+        //System.out.println(hourReminder);:>
         //System.out.println(c.get(Calendar.DAY_OF_WEEK));
 
         // The code is executed every 24 hours (once a day)
         int timeRepetition = 86400000;
 
+        Date DateProof = new Date(System.currentTimeMillis());
+        System.out.println(DateProof);
+
         // Schedule the timer.
-        this.timer.schedule(new ReminderSchedule(desciption,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hour,dateEnd,username,always,sendEmail),hourReminder,timeRepetition);
+        this.timer.schedule(new ReminderSchedule(description,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hour,dateEnd,username,always,sendEmail),hourReminder,timeRepetition);
     }
 
     public void cancelReminderSchedule(){
         this.timer.cancel();
     }
-
 
 }
