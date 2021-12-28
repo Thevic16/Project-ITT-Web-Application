@@ -1,5 +1,7 @@
 package edu.pucmm.eict.models;
 
+import org.jasypt.util.text.AES256TextEncryptor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -43,7 +45,11 @@ public class Username implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        // Decrupting password from the db.
+        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+        textEncryptor.setPassword("myEncryptionPassword");
+
+        return textEncryptor.decrypt(password);
     }
 
     public void setPassword(String password) {

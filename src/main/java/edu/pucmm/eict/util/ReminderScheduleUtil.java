@@ -19,14 +19,16 @@ public class ReminderScheduleUtil {
     public void setReminderSchedule(String description, Boolean monday, Boolean tuesday, Boolean wednesday, Boolean thursday, Boolean friday, Boolean saturday, Boolean sunday, LocalTime hour, LocalDate dateEnd, Username username, Boolean always , Boolean sendEmail){
         //Date hourReminder = new Date(System.currentTimeMillis());
 
+        Date today = new Date();
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hour.getHour());
         c.set(Calendar.MINUTE, hour.getMinute());
         c.set(Calendar.SECOND, hour.getSecond());
+        c.setTime(today);
 
         Date hourReminder = c.getTime();
 
-        c.setTime(hourReminder);
+
 
         System.out.println(hourReminder);
 

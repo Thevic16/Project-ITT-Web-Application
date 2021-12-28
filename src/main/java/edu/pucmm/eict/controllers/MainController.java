@@ -11,6 +11,7 @@ import edu.pucmm.eict.util.ReminderScheduleUtil;
 import io.javalin.Javalin;
 import org.jasypt.util.text.AES256TextEncryptor;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -134,11 +135,8 @@ public class MainController extends BaseController {
             Username usernameObject = UsernameServices.getInstance().find(username);
 
             if(usernameObject != null){
-                // Decrupting password from the db.
-                AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
-                textEncryptor.setPassword("myEncryptionPassword");
 
-                if(usernameObject.getUsername().equalsIgnoreCase(username) && textEncryptor.decrypt(usernameObject.getPassword()).equalsIgnoreCase(password)){
+                if(usernameObject.getUsername().equalsIgnoreCase(username) && usernameObject.getPassword().equalsIgnoreCase(password)){
 
                     if(usernameObject.getIswheelchair()){
                         ctx.redirect("/in/wheel-reminder-create");

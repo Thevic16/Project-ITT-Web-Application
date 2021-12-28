@@ -9,8 +9,6 @@ import edu.pucmm.eict.util.BaseController;
 import edu.pucmm.eict.util.EmailFallEvent;
 import edu.pucmm.eict.util.PushNotification;
 import io.javalin.Javalin;
-import org.jasypt.util.text.AES256TextEncryptor;
-
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -53,11 +51,8 @@ public class ApiRestController extends BaseController {
 
 
                         // Condition to verify a correct username, password and rol in the application.
-                        // Decrupting password from the db.
-                        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
-                        textEncryptor.setPassword("myEncryptionPassword");
 
-                        if (usernameObject.getUsername().equalsIgnoreCase(tmp.getUsername()) && textEncryptor.decrypt(usernameObject.getPassword()).equalsIgnoreCase(tmp.getPassword()) && usernameObject.getIswheelchair()) {
+                        if (usernameObject.getUsername().equalsIgnoreCase(tmp.getUsername()) && usernameObject.getPassword().equalsIgnoreCase(tmp.getPassword()) && usernameObject.getIswheelchair()) {
 
                             Position position = new Position(tmp.getLatitude(), tmp.getLongitude());
                             PositionServices.getInstance().create(position);
