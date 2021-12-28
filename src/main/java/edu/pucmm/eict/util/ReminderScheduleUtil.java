@@ -20,18 +20,18 @@ public class ReminderScheduleUtil {
         //Date hourReminder = new Date(System.currentTimeMillis());
 
         Date today = new Date();
+        System.out.println("Output today:"+today);
+
         Calendar c = Calendar.getInstance();
+
         c.setTime(today);
         c.set(Calendar.HOUR_OF_DAY, hour.getHour());
         c.set(Calendar.MINUTE, hour.getMinute());
         c.set(Calendar.SECOND, hour.getSecond());
 
-
         Date hourReminder = c.getTime();
 
-
-
-        System.out.println(hourReminder);
+        System.out.println("Output hour Reminder:"+hourReminder);
 
         //System.out.println(c.get(Calendar.DAY_OF_WEEK));
 
