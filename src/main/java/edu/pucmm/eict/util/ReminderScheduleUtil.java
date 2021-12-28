@@ -21,10 +21,11 @@ public class ReminderScheduleUtil {
 
         Date today = new Date();
         Calendar c = Calendar.getInstance();
+        c.setTime(today);
         c.set(Calendar.HOUR_OF_DAY, hour.getHour());
         c.set(Calendar.MINUTE, hour.getMinute());
         c.set(Calendar.SECOND, hour.getSecond());
-        c.setTime(today);
+
 
         Date hourReminder = c.getTime();
 
@@ -40,8 +41,8 @@ public class ReminderScheduleUtil {
         // The code is executed every 24 hours (once a day)
         int timeRepetition = 86400000;
 
-        Date DateProof = new Date(System.currentTimeMillis());
-        System.out.println(DateProof);
+        //Date DateProof = new Date(System.currentTimeMillis());
+        //System.out.println(DateProof);
 
         // Schedule the timer.
         this.timer.schedule(new ReminderSchedule(description,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hour,dateEnd,username,always,sendEmail),hourReminder,timeRepetition);
